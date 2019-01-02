@@ -1,0 +1,3 @@
+<?php
+// Add comment
+phpinfo();
