@@ -1,0 +1,19 @@
+*.zip
+*.exe
+*.dll
+*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.bak
+*.last
+*.todo
+*.DS_Store
+.prettierrc
+.idea/
+.vscode/
+Corel Auto-Preserve/
+foto-aktion/
+foto/
+/vendor/
+composer.phar
