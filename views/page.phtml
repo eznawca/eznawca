@@ -1,0 +1,6 @@
+<?php
+/** @var array $page */
+?>
+<?php foreach ((array)($page['blocks'] ?? []) as $block): ?>
+	<?php BlockRenderer::render($block); ?>
+<?php endforeach; ?>

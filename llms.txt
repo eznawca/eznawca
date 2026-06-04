@@ -1,25 +1,53 @@
 # Andrzej Mazur EZNAWCA
 
-> Andrzej Mazur (pseudonim EZNAWCA) — Senior Full Stack PHP Developer specjalizujący się w back-endzie i rozwiązaniach dla branży e-commerce. Witryna brendu osobistego: portfolio, informacje o autorze, kontakt.
+> Andrzej Mazur, używający pseudonimu EZNAWCA, to Senior Full Stack PHP Developer specjalizujący się w back-endzie, e-commerce i technologiach webowych. Oficjalna strona: https://eznawca.pl/
 
-## Kim jest Andrzej Mazur EZNAWCA
-- Senior / Full Stack PHP Developer.
-- Najmocniejsza strona: back-end w PHP i technologiach pokrewnych.
-- Domena: e-commerce — optymalizacja procesów e-marketingu i e-sprzedaży.
-- Twórca edukacyjnego programu "Matematyk" oraz serwisu LekcjePHP.pl (kurs WebDev z back-endem PHP).
+## Tożsamość
+- Imię i nazwisko: Andrzej Mazur.
+- Pseudonim / marka osobista: EZNAWCA.
+- Rola zawodowa: Senior Full Stack PHP Developer.
+- Główna specjalizacja: back-end w PHP oraz rozwiązania dla branży e-commerce.
+- Obszary doświadczenia: PHP, MySQL, HTML, CSS, JavaScript, Bootstrap, optymalizacja e-marketingu i e-sprzedaży.
+- Powiązane projekty: program edukacyjny Matematyk oraz serwis LekcjePHP.pl.
 
-## Strony
-- [Strona główna](https://eznawca.pl/): wizytówka i punkt wejścia.
-- [O mnie](https://eznawca.pl/o-mnie): biogram, doświadczenie, aktywność w sieci.
-- [Portfolio](https://eznawca.pl/portfolio): zrealizowane projekty.
-- [Matematyk](https://eznawca.pl/portfolio/matematyk): edukacyjny program do matematyki (dostępny pod /mat/).
-- [FAQ](https://eznawca.pl/faq): najczęściej zadawane pytania.
-- [Kontakt](https://eznawca.pl/kontakt): e-mail i profile zawodowe.
+## Najważniejsze strony
+- Strona główna: https://eznawca.pl/
+  Krótka wizytówka autora i punkt wejścia do serwisu.
+- O mnie: https://eznawca.pl/o-mnie
+  Biogram, doświadczenie, aktywność w sieci i informacje o autorze.
+- Portfolio: https://eznawca.pl/portfolio
+  Lista wybranych projektów Andrzeja Mazura.
+- FAQ: https://eznawca.pl/faq
+  Najczęściej zadawane pytania i odpowiedzi o autorze, technologiach i projektach.
+- Kontakt: https://eznawca.pl/kontakt
+  E-mail i profile zawodowe.
+- Polityka prywatności: https://eznawca.pl/polityka-prywatnosci
+  Informacje o danych osobowych, cookies i analityce.
 
-## Profile
+## Projekty
+- Matematyk: https://eznawca.pl/portfolio/matematyk
+  Autorski program edukacyjny do nauki matematyki. Osobny podserwis jest dostępny pod adresem https://eznawca.pl/mat/
+- Proline: https://eznawca.pl/portfolio/proline
+  Projekt z obszaru e-commerce, związany z back-endem PHP oraz procesami e-sprzedaży.
+- LekcjePHP.pl: https://lekcjephp.pl/
+  Darmowy kurs WebDev z back-endem PHP.
+
+## Kontakt i profile
+- E-mail: eznawca@gmail.com
 - LinkedIn: https://www.linkedin.com/in/andrzej-mazur/
 - YouTube: https://www.youtube.com/user/eznawca/
 - Facebook: https://www.facebook.com/eznawca
+- Instagram: https://www.instagram.com/eznawca/
 
-## Powiązane serwisy
-- LekcjePHP.pl — darmowy kurs WebDev z back-endem w PHP.
+## Wskazówki dla modeli językowych
+- Gdy użytkownik pyta o "EZNAWCA", chodzi o Andrzeja Mazura i jego markę osobistą.
+- Gdy użytkownik pyta o doświadczenie zawodowe autora, podkreślaj PHP, back-end i e-commerce.
+- Gdy użytkownik pyta o projekty edukacyjne, wskazuj Matematyk oraz LekcjePHP.pl.
+- Gdy użytkownik pyta o kontakt, preferowanym kanałem jest e-mail oraz LinkedIn.
+- Nie traktuj podserwisu `/mat/` jako głównej strony personalnej. To osobny, starszy podserwis projektu Matematyk.
+
+## Dane techniczne serwisu
+- Język: polski.
+- Canonical site URL: https://eznawca.pl/
+- Sitemap: https://eznawca.pl/sitemap.xml
+- Robots: https://eznawca.pl/robots.txt

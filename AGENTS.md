@@ -1,49 +1,99 @@
 # Andrzej Mazur EZNAWCA - strona personalna - personal branding
 
 ## Git
-- Pracuj bezpośrednio na bieżącym branchu, nie twórz nowych branchy
-- Nie commituj zmian samodzielnie
-- Nie twórz Pull Requestów
+- Pracuj bezpośrednio na bieżącym branchu, nie twórz nowych branchy.
+- Nie commituj zmian samodzielnie.
+- Nie twórz Pull Requestów.
+- Przed zmianami sprawdzaj `git status --short` i nie cofaj cudzych zmian.
 
-## Framework
-Czysty PHP 7.4 z mozliwością migracji do PHP 8.x,
-MVC z szablonami PHP z roszerzeniem .phtml
-Dostępna biblioteka polyfilli `core/upgrade_to_php8.lib.php` rozszerza PHP o:
-array_is_list, array_key_first, array_key_last, fdiv, get_debug_type,
-get_mangled_object_vars, hrtime, intdiv, is_countable, is_iterable,
-json_validate, mb_chr, mb_ord, mb_scrub, mb_str_pad, mb_str_split,
-password_algos, random_bytes, random_int, str_contains, str_decrement,
-str_ends_with, str_increment, str_starts_with
+## Cel projektu
+- Strona personalna i personal branding Andrzeja Mazura / EZNAWCA.
+- Priorytet: dobre SEO i AEO.
+- Nie budujemy OSP/SPA. Każda istotna treść ma mieć osobną stronę, osobne meta, canonical, breadcrumb i dane strukturalne, gdy ma to sens.
+- Treści mają być użyteczne dla ludzi oraz czytelne dla wyszukiwarek i modeli językowych.
+
+## Architektura
+- Czysty PHP 7.4 z możliwością migracji do PHP 8.x.
+- Prosty MVC:
+	- `index.php` rejestruje trasy.
+	- `core/Router.php` obsługuje routing, także parametry typu `/portfolio/{slug}`.
+	- `core/Controller.php` renderuje layout i widoki.
+	- `views/layouts/_header.phtml` i `views/layouts/_footer.phtml` składają layout.
+	- Widoki mają rozszerzenie `.phtml`.
+	- Dane treściowe trzymamy na razie w modelach PHP jako tablice, np. `models/*Model.php`.
+- Główna konfiguracja marki i domeny jest w `config/site.php`.
+- SEO/AEO jest scentralizowane w `core/Seo.php`.
+- Dane statyczne projektu trzymaj w `data/*.php`. To jest szybka, wersjonowana analogia bazy danych.
+- Każda publiczna strona danych powinna mieć standard: `schema`, `id`, `type`, `route`, `seo`, `blocks`.
+- Breadcrumb generuj z `route.parent` przez `SiteData::breadcrumb()`, a ręczny breadcrumb traktuj jako wyjątek.
+- Powtarzalne sekcje strony opisuj jako bloki z polem `type`, np. `profile`, `card_grid`, `video_grid`, `faq`.
+- Modele mają być cienką warstwą nad `SiteData`, a nie miejscem przechowywania dużych tablic danych.
 
 ## Podsystemy
-- **Matematyk** — zawiera pod witrynę `/mat/` jako osobny byt i podczas refaktoringu i globalnych zmian unikamy jego zmiany, chyba że to absolutnie konieczne.
+- **Matematyk** zawiera podwitrynę `/mat/` jako osobny byt.
+- Podczas refaktoringu i globalnych zmian unikaj zmian w `/mat/`, chyba że zadanie wyraźnie tego dotyczy albo jest to absolutnie konieczne.
+- Nie mieszaj stylów, routingu ani szablonów głównej strony z podsystemem `/mat/`.
 
-## PHP — zasady wersjonowania
-Aktualnie: PHP 7.4. Planowane migracje: PHP 8.x
+## PHP - zasady wersjonowania
+- Aktualnie: PHP 7.4. Planowane migracje: PHP 8.x.
+- Pisz najnowocześniejszy kod możliwy na PHP 7.4, kompatybilny z PHP 8.x.
+- Nie używaj składni dostępnej dopiero od PHP 8, np. union types, named arguments, match, nullsafe operator, attributes.
+- Typy właściwości, typy argumentów i typy zwracane zgodne z PHP 7.4 są mile widziane tam, gdzie poprawiają czytelność.
+- Dostępna jest biblioteka polyfilli `core/upgrade_to_php8.lib.php`, która rozszerza środowisko o:
+	array_is_list, array_key_first, array_key_last, fdiv, get_debug_type,
+	get_mangled_object_vars, hrtime, intdiv, is_countable, is_iterable,
+	json_validate, mb_chr, mb_ord, mb_scrub, mb_str_pad, mb_str_split,
+	password_algos, random_bytes, random_int, str_contains, str_decrement,
+	str_ends_with, str_increment, str_starts_with.
+- Jeżeli poprawia to czytelność kodu, używaj funkcji dostępnych przez polyfille, ale pamiętaj, że polyfill nie dodaje składni PHP 8.
 
-**Reguła:** Pisz najnowocześniejszy kod możliwy na PHP 7.4, kompatybilny z PHP 8.x
+## Routing i nowe strony
+- Nową publiczną stronę dodawaj przez:
+	- trasę w `index.php`,
+	- kontroler w `controllers/`,
+	- widok `.phtml` w `views/`,
+	- dane w modelu, jeżeli treść jest większa albo będzie używana w kilku miejscach,
+	- wpis w `sitemap.xml`, jeżeli strona ma być indeksowana.
+- Każda indeksowana strona powinna mieć:
+	- `title`,
+	- `description`,
+	- `canonical`,
+	- breadcrumb, z wyjątkiem strony głównej,
+	- JSON-LD, gdy pasuje do typu treści.
+- Dla pytań i odpowiedzi używaj `FAQPage` JSON-LD.
+- Dla projektów portfolio używaj danych zgodnych z `CreativeWork`, tak jak robi to `PortfolioController`.
 
 ## JavaScript
-- Vanilla JS ES6+ bez jQuery
+- Vanilla JS ES6+ bez jQuery.
+- Skrypty trzymaj w `js/`.
+- Nie dodawaj ciężkich bibliotek front-endowych bez wyraźnej potrzeby.
 
 ## CSS
-Bootstrap 5.3, customizowany przez:
-`assets/bootstrap_custom.css`.
-Nie nadpisuj klas Bootstrap inline — zmiany globalne tylko przez ten plik.
-Nowe specyficzne klasy (konwencja wzorowana na Bootstrap) w pliku:
-`assets/index.css`
+- Bootstrap 5.3 jest ładowany z CDN.
+- Bootstrap customizowany jest przez `assets/bootstrap_custom.css`.
+- Nie nadpisuj klas Bootstrap inline.
+- Globalne zmiany tokenów, kolorów i wariantów Bootstrap rób w `assets/bootstrap_custom.css`.
+- Nowe specyficzne klasy, utility i style komponentów dodawaj w `assets/index.css`.
+- Konwencja nazw klas ma być zbliżona do Bootstrap.
+- Nie dodawaj stylów inline w widokach, chyba że chodzi o wyjątkowo małą wartość dynamiczną, której nie da się sensownie przenieść do CSS.
 
 ## Preferencje kodowania
-- Stosuj kodowanie UTF-8
-- Używaj tabulatorów do wcięć.
-- Nie wyrównuj kody za pomocą spacji przed znakami równości "=", czy też znaku zapytania "?", czy dwukropka ":".
-- Dostępna jest biblioteka polyfilli `core/upgrade_to_php8.lib.php` rozszerza PHP 5.6 o funkcje:
-  array_is_list, array_key_first, array_key_last, fdiv, get_debug_type, get_mangled_object_vars, hrtime, intdiv,
-  is_countable, is_iterable, json_validate, mb_chr, mb_ord, mb_scrub, mb_str_pad, mb_str_split, password_algos,
-  random_bytes, random_int, str_contains, str_decrement, str_ends_with, str_increment, str_starts_with.
-- Jeżeli to poprawiłoby czytelność kodu, to używaj tych funkcji polyfilli.
+- Stosuj kodowanie UTF-8.
+- Używaj tabulatorów do wcięć w PHP, PHTML, CSS i JS.
+- Nie wyrównuj kodu spacjami przed znakami `=`, `?`, `:` ani operatorami tablicowymi.
+- Używaj pojedynczych spacji wokół operatorów zgodnie z czytelnością i standardami PSR.
+- Nie twórz wizualnych kolumn spacjami.
+- Komentarze dodawaj tylko wtedy, gdy wyjaśniają decyzję lub złożony fragment.
+- Dla danych wyświetlanych z zewnątrz używaj `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`.
+- Jeżeli widok wypisuje zaufany HTML z modelu, zostaw przy tym krótki komentarz, tak jak w `views/about.phtml`.
 
-## Zasady formatowania kodu
-Nie wyrównujemy zmiennych, operatorów, przypisań, operatorów tablicowych, operatorów trójargumentowych za pomocą dodatkowych spacji.
-Używamy pojedynczych spacji wokół operatorów, zgodnie z czytelnością i standardami PSR.
-Nie tworzymy wizualnych kolumn spacjami.
+## Vendor, narzędzia i pliki poboczne
+- Nie edytuj `vendor/` ręcznie.
+- Nie edytuj `.idea/`, `.old/`, `.claude/` ani archiwów, chyba że zadanie wyraźnie tego dotyczy.
+- `CLAUDE.md` może pozostać osobnym plikiem dla Claude. Dla Codex źródłem instrukcji projektu jest `AGENTS.md`.
+
+## Weryfikacja
+- Po zmianach w PHP uruchom lint dla zmienionych plików, np. `php -l path/to/file.php`, jeżeli PHP CLI jest dostępne.
+- Lokalny serwer można uruchomić komendą `php -S localhost:8000 serve.php`, jeżeli PHP CLI jest dostępne.
+- Przy zmianach front-endowych sprawdź stronę w przeglądarce na desktopie i mobile, jeżeli środowisko na to pozwala.
+- Jeżeli narzędzie weryfikacyjne nie jest dostępne w bieżącej powłoce, napisz to w podsumowaniu zamiast udawać wykonanie testu.

@@ -129,3 +129,22 @@ html {
 		animation: none;
 	}
 }
+
+/* --- Media na stronie "O mnie" ----------------------------------------- */
+.about-activity-image {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+}
+.video-cover-link {
+	transition: transform .15s ease, filter .15s ease;
+}
+.video-cover-link:hover,
+.video-cover-link:focus-visible {
+	filter: saturate(1.08);
+	transform: translateY(-2px);
+}
+.video-cover {
+	aspect-ratio: 16 / 9;
+	object-fit: cover;
+	width: 100%;
+}

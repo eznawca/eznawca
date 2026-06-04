@@ -3,13 +3,7 @@
  * Layout — nagłówek. Oczekuje tablicy $meta (z Controller::view()).
  * @var array $meta
  */
-$navItems = [
-	'/'          => 'Główna',
-	'/o-mnie'    => 'O mnie',
-	'/portfolio' => 'Portfolio',
-	'/faq'       => 'FAQ',
-	'/kontakt'   => 'Kontakt',
-];
+$navItems = SiteData::menu();
 $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') ?: '/';
 ?>
 <!doctype html>

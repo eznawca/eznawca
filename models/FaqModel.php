@@ -1,38 +1,25 @@
 <?php
 /**
- * Model FAQ — pytania i odpowiedzi. Dane jako tablica PHP (szybki dostęp).
- * Treść w stylu zwięzłych odpowiedzi — wspiera AEO (FAQPage).
+ * Model FAQ — pytania i odpowiedzi dla AEO oraz widoku.
  */
 class FaqModel
 {
 	/** @return array<int,array{q:string,a:string}> */
 	public function all(): array
 	{
-		return [
-			[
-				'q' => 'Kim jest Andrzej Mazur EZNAWCA?',
-				'a' => 'Andrzej Mazur (pseudonim EZNAWCA) to Senior Full Stack PHP Developer specjalizujący się w back-endzie i rozwiązaniach dla branży e-commerce.',
-			],
-			[
-				'q' => 'W jakich technologiach pracujesz?',
-				'a' => 'Przede wszystkim PHP po stronie back-end oraz technologie pokrewne: MySQL, HTML, CSS, JavaScript i Bootstrap. Tworzę i optymalizuję rozwiązania e-commerce.',
-			],
-			[
-				'q' => 'Czym się zajmujesz zawodowo?',
-				'a' => 'Programuję dla branży e-commerce — optymalizuję procesy e-marketingu i e-sprzedaży, budując przewagę konkurencyjną za pomocą nowych technologii.',
-			],
-			[
-				'q' => 'Co to jest program Matematyk?',
-				'a' => 'Matematyk to mój autorski program edukacyjny do nauki matematyki — kompletny materiał szkolny wraz ze zbiorem zadań. Dostępny jest pod adresem /mat/.',
-			],
-			[
-				'q' => 'Czym jest LekcjePHP.pl?',
-				'a' => 'LekcjePHP.pl to mój darmowy kurs WebDev z back-endem w PHP, skierowany do osób uczących się programowania po stronie serwera.',
-			],
-			[
-				'q' => 'Jak się ze mną skontaktować?',
-				'a' => 'Najszybciej mailowo: eznawca@gmail.com. Zawodowe CV i kontakt biznesowy znajdziesz także na moim profilu LinkedIn.',
-			],
-		];
+		$questions = [];
+		foreach (SiteData::blocks('faq') as $block) {
+			if (($block['type'] ?? '') !== 'faq') {
+				continue;
+			}
+			foreach ((array)($block['items'] ?? []) as $item) {
+				$questions[] = [
+					'q' => (string)($item['title'] ?? ''),
+					'a' => (string)($item['text'] ?? ''),
+				];
+			}
+		}
+
+		return $questions;
 	}
 }

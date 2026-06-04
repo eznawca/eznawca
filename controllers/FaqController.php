@@ -7,6 +7,7 @@ class FaqController extends Controller
 	public function index(): void
 	{
 		$faq = (new FaqModel())->all();
+		$page = SiteData::page('faq') ?? [];
 
 		// FAQPage — dane strukturalne dla wyszukiwarek i modeli językowych.
 		$mainEntity = [];
@@ -26,17 +27,11 @@ class FaqController extends Controller
 			'mainEntity' => $mainEntity,
 		];
 
-		$this->view('faq', [
-			'faq' => $faq,
-		], [
-			'title'       => 'FAQ — Andrzej Mazur EZNAWCA',
-			'description' => 'Najczęściej zadawane pytania o Andrzeju Mazurze (EZNAWCA), technologiach i projektach.',
-			'canonical'   => '/faq',
-			'breadcrumb'  => [
-				['label' => 'Główna', 'url' => '/'],
-				['label' => 'FAQ', 'url' => '/faq'],
-			],
-			'jsonld'      => [$faqPage],
-		]);
+		$meta = SiteData::meta('faq');
+		$meta['jsonld'] = [$faqPage];
+
+		$this->view('page', [
+			'page' => $page,
+		], $meta);
 	}
 }

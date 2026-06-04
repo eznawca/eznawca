@@ -15,15 +15,7 @@ class PortfolioController extends Controller
 	{
 		$this->view('portfolio/index', [
 			'projects' => $this->model->all(),
-		], [
-			'title'       => 'Portfolio — Andrzej Mazur EZNAWCA',
-			'description' => 'Wybrane projekty Andrzeja Mazura: aplikacje, e-commerce, program edukacyjny Matematyk.',
-			'canonical'   => '/portfolio',
-			'breadcrumb'  => [
-				['label' => 'Główna', 'url' => '/'],
-				['label' => 'Portfolio', 'url' => '/portfolio'],
-			],
-		]);
+		], SiteData::meta('portfolio'));
 	}
 
 	public function show(string $slug): void
@@ -59,11 +51,9 @@ class PortfolioController extends Controller
 			'description' => $project['lead'] ?? $project['title'],
 			'canonical'   => '/portfolio/' . $slug,
 			'ogType'      => 'article',
-			'breadcrumb'  => [
-				['label' => 'Główna', 'url' => '/'],
-				['label' => 'Portfolio', 'url' => '/portfolio'],
+			'breadcrumb'  => SiteData::breadcrumb('portfolio', [
 				['label' => $project['title'], 'url' => '/portfolio/' . $slug],
-			],
+			]),
 			'jsonld'      => [$creativeWork],
 		]);
 	}
