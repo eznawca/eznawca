@@ -1,28 +1,17 @@
 <?php
-// HomeController.php - Page Controller dla strony "Home"
-
-// Kontrolery jako klasy
-class HomeController {
-	private $objmodel;
-
-	public function __construct($obj_model = null)
+/**
+ * Strona główna.
+ */
+class HomeController extends Controller
+{
+	public function index(): void
 	{
-		$this->objmodel = $obj_model;
-	}
-
-	public function index() {
-		if ($this->objmodel !== null) $data = $this->objmodel->getContent();
-		$pageTitle = $data['title'];
-		$content = $data['data'];
-
-		// Wyświetlanie widoku
-		include('./views/_header.php');
-		include('./views/home.php');
-		include('./views/_footer.php');
-	}
-
-	public function handlePost() {
-		// Obsługa żądania POST dla strony "Home"
-		// ...
+		$this->view('home', [
+			'lead' => 'Full Stack PHP Developer dla branży e-commerce.',
+		], [
+			'title'       => 'Andrzej Mazur EZNAWCA — Full Stack PHP Developer',
+			'description' => 'Andrzej Mazur EZNAWCA — programista PHP i Web Developer. Tworzę rozwiązania back-end dla e-commerce.',
+			'canonical'   => '/',
+		]);
 	}
 }

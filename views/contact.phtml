@@ -1,0 +1,35 @@
+<?php
+/** @var bool $sent */
+?>
+<section class="row g-4">
+	<div class="col-lg-8">
+		<h1 class="mb-3">Kontakt</h1>
+
+		<?php if (!empty($sent)): ?>
+		<div class="alert alert-success">Dziękuję — wiadomość została wysłana.</div>
+		<?php endif; ?>
+
+		<p class="lead">Najszybciej złapiesz mnie mailowo. Sprawy zawodowe chętnie omówię też przez LinkedIn.</p>
+
+		<div class="row g-3 mt-2">
+			<div class="col-sm-6">
+				<div class="card h-100 shadow-sm">
+					<div class="card-body">
+						<h2 class="h5">E-mail</h2>
+						<p class="mb-2 text-secondary small">Bezpośredni kontakt</p>
+						<a class="btn btn-primary btn-sm" href="mailto:eznawca@gmail.com">eznawca@gmail.com</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="card h-100 shadow-sm">
+					<div class="card-body">
+						<h2 class="h5">LinkedIn</h2>
+						<p class="mb-2 text-secondary small">Kontakt zawodowy i CV</p>
+						<a class="btn btn-outline-primary btn-sm" href="https://www.linkedin.com/in/andrzej-mazur/" target="_blank" rel="noopener">Profil LinkedIn &nearr;</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,34 @@
+<?php
+/** @var array $project */
+?>
+<article>
+	<h1 class="mb-1"><?= htmlspecialchars($project['title']) ?></h1>
+	<?php if (!empty($project['subtitle'])): ?>
+	<p class="text-secondary fs-5"><?= htmlspecialchars($project['subtitle']) ?></p>
+	<?php endif; ?>
+
+	<?php if (!empty($project['tech'])): ?>
+	<p class="mb-3">
+		<?php foreach ($project['tech'] as $t): ?>
+		<span class="badge text-bg-light border me-1"><?= htmlspecialchars($t) ?></span>
+		<?php endforeach; ?>
+		<?php if (!empty($project['year'])): ?>
+		<span class="text-secondary small ms-1">· <?= htmlspecialchars($project['year']) ?></span>
+		<?php endif; ?>
+	</p>
+	<?php endif; ?>
+
+	<p class="lead"><?= htmlspecialchars($project['lead'] ?? '') ?></p>
+
+	<?php if (!empty($project['description'])): ?>
+	<p><?= htmlspecialchars($project['description']) ?></p>
+	<?php endif; ?>
+
+	<?php if (!empty($project['url'])): ?>
+	<a class="btn btn-primary mt-2" href="<?= htmlspecialchars($project['url']) ?>"<?= !empty($project['external']) ? ' target="_blank" rel="noopener"' : '' ?>>
+		Otwórz projekt
+	</a>
+	<?php endif; ?>
+
+	<p class="mt-4"><a href="/portfolio">&laquo; Wróć do portfolio</a></p>
+</article>

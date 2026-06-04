@@ -1,19 +1,70 @@
 <?php
+/**
+ * Portfolio — lista projektów oraz strona pojedynczego projektu.
+ */
+class PortfolioController extends Controller
+{
+	private PortfolioModel $model;
 
-class PortfolioController {
-	public function index() {
-		// Logika biznesowa dla strony "About"
-		$pageTitle = "O nas";
-		$content = "Jesteśmy firmą zajmującą się...";
-
-		// Wyświetlanie widoku
-		include('./views/_header.php');
-		include('./views/about.php');
-		include('./views/_footer.php');
+	public function __construct()
+	{
+		$this->model = new PortfolioModel();
 	}
 
-	public function handlePost() {
-		// Obsługa żądania POST dla strony "About"
-		// ...
+	public function index(): void
+	{
+		$this->view('portfolio/index', [
+			'projects' => $this->model->all(),
+		], [
+			'title'       => 'Portfolio — Andrzej Mazur EZNAWCA',
+			'description' => 'Wybrane projekty Andrzeja Mazura: aplikacje, e-commerce, program edukacyjny Matematyk.',
+			'canonical'   => '/portfolio',
+			'breadcrumb'  => [
+				['label' => 'Główna', 'url' => '/'],
+				['label' => 'Portfolio', 'url' => '/portfolio'],
+			],
+		]);
+	}
+
+	public function show(string $slug): void
+	{
+		$project = $this->model->find($slug);
+
+		if ($project === null) {
+			http_response_code(404);
+			(new ErrorController())->index();
+			return;
+		}
+
+		// CreativeWork — dane strukturalne projektu (AEO).
+		$creativeWork = [
+			'@context'    => 'https://schema.org',
+			'@type'       => 'CreativeWork',
+			'name'        => $project['title'],
+			'description' => $project['description'] ?? ($project['lead'] ?? $project['title']),
+			'url'         => Seo::absUrl('/portfolio/' . $slug),
+			'author'      => ['@id' => SITE['url'] . '/#person'],
+		];
+		if (!empty($project['year'])) {
+			$creativeWork['dateCreated'] = $project['year'];
+		}
+		if (!empty($project['tech'])) {
+			$creativeWork['keywords'] = implode(', ', $project['tech']);
+		}
+
+		$this->view('portfolio/show', [
+			'project' => $project,
+		], [
+			'title'       => $project['title'] . ' — Portfolio — Andrzej Mazur EZNAWCA',
+			'description' => $project['lead'] ?? $project['title'],
+			'canonical'   => '/portfolio/' . $slug,
+			'ogType'      => 'article',
+			'breadcrumb'  => [
+				['label' => 'Główna', 'url' => '/'],
+				['label' => 'Portfolio', 'url' => '/portfolio'],
+				['label' => $project['title'], 'url' => '/portfolio/' . $slug],
+			],
+			'jsonld'      => [$creativeWork],
+		]);
 	}
 }

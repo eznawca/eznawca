@@ -1,0 +1,25 @@
+</main>
+
+<footer class="border-top py-4 mt-5 bg-body-tertiary">
+	<div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+		<p class="mb-0 text-secondary small">
+			&copy; <?= date('Y') ?> Andrzej Mazur <strong>EZNAWCA</strong>. Wszelkie prawa zastrzeżone.
+		</p>
+		<?php $socialIcons = ['LinkedIn' => 'linkedin', 'YouTube' => 'youtube', 'Facebook' => 'facebook', 'Instagram' => 'instagram']; ?>
+		<nav class="d-flex flex-wrap align-items-center gap-3 small">
+			<?php foreach (SITE['social'] as $label => $url): ?>
+			<a class="link-secondary text-decoration-none" href="<?= htmlspecialchars($url) ?>" target="_blank" rel="noopener" title="<?= htmlspecialchars($label) ?>">
+				<i class="bi bi-<?= htmlspecialchars($socialIcons[$label] ?? 'link-45deg') ?>" aria-hidden="true"></i>
+				<span class="ms-1"><?= htmlspecialchars($label) ?></span>
+			</a>
+			<?php endforeach; ?>
+			<a class="link-secondary text-decoration-none" href="/mat/" target="_blank" rel="noopener"><i class="bi bi-calculator" aria-hidden="true"></i><span class="ms-1">Matematyk</span></a>
+			<a class="link-secondary text-decoration-none" href="/polityka-prywatnosci"><i class="bi bi-shield-lock" aria-hidden="true"></i><span class="ms-1">Polityka prywatności</span></a>
+		</nav>
+	</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="/js/navbar-auto-hide.js" defer></script>
+</body>
+</html>

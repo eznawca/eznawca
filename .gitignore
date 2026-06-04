@@ -9,11 +9,29 @@
 *.last
 *.todo
 *.DS_Store
+*.m4v
+*.ogv
+*.glb
+*.3mf
+*.log
+npm-debug.log*
+yarn-error.log*
+error_log
+*.dwsync.xml
+ehthumbs.db
+Thumbs.db
+desktop.ini
+.DS_Store
 .prettierrc
-.idea/
-.vscode/
-Corel Auto-Preserve/
+/.idea/
+/.vscode/
+**/Corel Auto-Preserve/
 foto-aktion/
 foto/
 /vendor/
-composer.phar
+/composer.phar
+/.claude/
+!/.claude/CLAUDE.md
+!/.claude/settings.json
+!/.claude/commands/
+!/.claude/commands/**

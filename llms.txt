@@ -1,0 +1,25 @@
+# Andrzej Mazur EZNAWCA
+
+> Andrzej Mazur (pseudonim EZNAWCA) — Senior Full Stack PHP Developer specjalizujący się w back-endzie i rozwiązaniach dla branży e-commerce. Witryna brendu osobistego: portfolio, informacje o autorze, kontakt.
+
+## Kim jest Andrzej Mazur EZNAWCA
+- Senior / Full Stack PHP Developer.
+- Najmocniejsza strona: back-end w PHP i technologiach pokrewnych.
+- Domena: e-commerce — optymalizacja procesów e-marketingu i e-sprzedaży.
+- Twórca edukacyjnego programu "Matematyk" oraz serwisu LekcjePHP.pl (kurs WebDev z back-endem PHP).
+
+## Strony
+- [Strona główna](https://eznawca.pl/): wizytówka i punkt wejścia.
+- [O mnie](https://eznawca.pl/o-mnie): biogram, doświadczenie, aktywność w sieci.
+- [Portfolio](https://eznawca.pl/portfolio): zrealizowane projekty.
+- [Matematyk](https://eznawca.pl/portfolio/matematyk): edukacyjny program do matematyki (dostępny pod /mat/).
+- [FAQ](https://eznawca.pl/faq): najczęściej zadawane pytania.
+- [Kontakt](https://eznawca.pl/kontakt): e-mail i profile zawodowe.
+
+## Profile
+- LinkedIn: https://www.linkedin.com/in/andrzej-mazur/
+- YouTube: https://www.youtube.com/user/eznawca/
+- Facebook: https://www.facebook.com/eznawca
+
+## Powiązane serwisy
+- LekcjePHP.pl — darmowy kurs WebDev z back-endem w PHP.

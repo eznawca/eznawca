@@ -1,51 +1,22 @@
 <?php
-require_once __DIR__ . '/vendor/autoload.php';
+/**
+ * Front Controller — witryna brendu osobistego "Andrzej Mazur EZNAWCA".
+ *
+ * @author Andrzej Mazur <eznawca@gmail.com>
+ */
 
-define('DOCUMENT_ROOT', $_SERVER['DOCUMENT_ROOT']);
-function r($s) {
-	if ($s === false) $s = '[FALSE]';
-	if ($s === null) $s = '[NULL]';
-	if ($s === 0) $s = '[ZERO]';
-	print('<pre>'.print_r($s, 1));
-}
-function rb($s) {
-	r($s);
-	exit();
-}
+require __DIR__ . '/core/bootstrap.php';
 
-// _index.php - Front Controller
-$requestUri = $_SERVER['REQUEST_URI'];
-$requestMethod = $_SERVER['REQUEST_METHOD'];
+$router = new Router();
 
-// Mapowanie ścieżek URL na akcje
+// --- Trasy -------------------------------------------------------------------
+$router->get('/',                 [HomeController::class,      'index']);
+$router->get('/o-mnie',           [AboutController::class,     'index']);
+$router->get('/portfolio',        [PortfolioController::class, 'index']);
+$router->get('/portfolio/{slug}', [PortfolioController::class, 'show']);
+$router->get('/faq',              [FaqController::class,       'index']);
+$router->get('/kontakt',          [ContactController::class,   'index']);
+$router->get('/polityka-prywatnosci', [PrivacyController::class, 'index']);
 
-$routes = [
-	'GET:/' => [HomeController::class, 'index', HomeModel::class],
-	'POST:/' => [HomeController::class, 'handlePost'],
-	'GET:/about' => [AboutController::class, 'index'],
-	'POST:/about' => [AboutController::class, 'handlePost'],
-	'GET:/portfolio' => [PortfolioController::class, 'index'],
-	'GET:/author' => [AuthorController::class, 'index'],
-];
-// Rozdziel ścieżkę i metodę
-$routeKey = $requestMethod . ':' . $requestUri;
-
-// Sprawdź, czy istnieje odpowiednia ścieżka w mapowaniu
-if (array_key_exists($routeKey, $routes)) {
-	list($controllerName, $action, $modelName) = $routes[$routeKey];
-
-	r($modelName);
-
-	// Wywołaj akcję
-	if (!empty($modelName)) {
-		$obj_model = new $modelName();
-		$controllerClass = new $controllerName($obj_model);
-	} else {
-		$controllerClass = new $controllerName();
-	}
-	$controllerClass->$action();
-} else {
-	//echo "404 Not Found";
-	$controllerClass = new ErrorController();
-	$controllerClass->index();
-}
+// --- Dispatch ----------------------------------------------------------------
+$router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

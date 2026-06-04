@@ -1,1 +1,39 @@
-body {background-color: beige}
+/* Andrzej Mazur EZNAWCA — style witryny */
+
+/* Sticky, półprzezroczyste menu z efektem blur */
+.navbar-eznawca {
+	background-color: rgba(255, 255, 255, 0.72);
+	-webkit-backdrop-filter: saturate(180%) blur(10px);
+	backdrop-filter: saturate(180%) blur(10px);
+	will-change: transform;
+}
+
+/* Tryb ciemny (Bootstrap 5.3 data-bs-theme) */
+[data-bs-theme="dark"] .navbar-eznawca {
+	background-color: rgba(33, 37, 41, 0.72);
+}
+
+/* Najszerszy układ: standardowy container z górnym limitem 1400px */
+@media (min-width: 1400px) {
+	.container,
+	.container-sm,
+	.container-md,
+	.container-lg,
+	.container-xl,
+	.container-xxl {
+		max-width: 1400px;
+	}
+}
+
+/* Delikatne podniesienie kart przy najechaniu */
+.card {
+	transition: transform .15s ease, box-shadow .15s ease;
+}
+.card:hover {
+	transform: translateY(-2px);
+}
+
+/* Płynne przewijanie do kotwic */
+html {
+	scroll-behavior: smooth;
+}

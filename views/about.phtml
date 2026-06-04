@@ -1,0 +1,43 @@
+<?php
+/** @var string[] $bio */
+/** @var array $activities */
+?>
+<section class="row g-4 align-items-start">
+	<div class="col-lg-4 text-center">
+		<picture>
+			<source srcset="/img/andrzej-mazur-eznawca.webp" type="image/webp">
+			<img class="img-fluid rounded shadow-sm border mb-3" src="/img/andrzej-mazur-eznawca.jpg" alt="Andrzej Mazur EZNAWCA" width="1024" height="1024">
+		</picture>
+	</div>
+	<div class="col-lg-8">
+		<h1 class="mb-3">O mnie</h1>
+		<?php foreach ($bio as $p): ?>
+		<p class="lh-base"><?= $p /* zaufana treść z modelu */ ?></p>
+		<?php endforeach; ?>
+	</div>
+</section>
+
+<section class="mt-5">
+	<h2 class="h4 mb-3">Aktywność w sieci</h2>
+	<div class="row g-4">
+		<?php foreach ($activities as $a): ?>
+		<div class="col-md-6 col-lg-4">
+			<div class="card h-100 shadow-sm">
+				<div class="card-body d-flex flex-column">
+					<h3 class="h5 card-title mb-1"><?= htmlspecialchars($a['title']) ?></h3>
+					<?php if (!empty($a['subtitle'])): ?>
+					<p class="card-subtitle text-secondary small mb-2"><?= htmlspecialchars($a['subtitle']) ?></p>
+					<?php endif; ?>
+					<p class="card-text flex-grow-1"><?= htmlspecialchars($a['text']) ?></p>
+					<?php if (!empty($a['link'])):
+						$ext = strpos($a['link'], 'http') === 0; ?>
+					<a class="btn btn-sm btn-outline-primary align-self-start mt-2" href="<?= htmlspecialchars($a['link']) ?>"<?= $ext ? ' target="_blank" rel="noopener"' : '' ?>>
+						Otwórz<?= $ext ? ' &nearr;' : '' ?>
+					</a>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</section>
