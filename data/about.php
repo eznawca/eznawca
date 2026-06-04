@@ -1,7 +1,6 @@
 <?php
 
 return [
-	'schema' => 'page:1',
 	'id' => 'about',
 	'type' => 'page',
 	'route' => [

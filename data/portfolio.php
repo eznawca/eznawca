@@ -1,7 +1,6 @@
 <?php
 
 return [
-	'schema' => 'page:1',
 	'id' => 'portfolio',
 	'type' => 'page',
 	'route' => [
@@ -19,13 +18,7 @@ return [
 		'changefreq' => 'monthly',
 		'priority' => '0.9',
 	],
-	'blocks' => [
-		[
-			'id' => 'projects',
-			'type' => 'project_grid',
-			'title' => 'Portfolio',
-		],
-	],
+	'blocks' => [],
 	'items' => [
 		'projects' => [
 			'matematyk' => [

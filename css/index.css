@@ -1,6 +1,14 @@
 /* Andrzej Mazur EZNAWCA — style witryny (autorskie klasy/utility).
-   Konwencja wzorowana na Bootstrap. Tokeny --ez-* / --g- pochodzą
-   z assets/bootstrap_custom.css (ładowanego wcześniej). */
+   Konwencja wzorowana na Bootstrap. Tokeny --ez-* pochodzą
+   z css/bootstrap_custom.css (ładowanego wcześniej). */
+
+:root {
+	/* Kolory Google — używane tylko tutaj (.glow-google) */
+	--g-blue: #4285F4;
+	--g-green: #34A853;
+	--g-yellow: #FBBC05;
+	--g-red: #EA4335;
+}
 
 /* --- Typografia marki ---------------------------------------------------- */
 h1, .h1, h2, .h2, h3, .h3 {
@@ -80,12 +88,6 @@ html {
 	-webkit-text-fill-color: transparent;
 	color: transparent;
 }
-.bg-gradient-ez {
-	background-image: var(--ez-gradient);
-}
-.bg-gradient-ez-soft {
-	background-image: var(--ez-gradient-soft);
-}
 
 /* =========================================================================
    .glow-google — wyróżnik specjalnych elementów.
@@ -115,19 +117,6 @@ html {
 .glow-google:hover::before {
 	opacity: 1;
 	filter: blur(18px) saturate(1.5);
-}
-
-/* Wariant animowany (opcjonalny): .glow-spin — wolny obrót barw */
-@keyframes ez-glow-spin {
-	to { transform: rotate(1turn); }
-}
-.glow-google.glow-spin::before {
-	animation: ez-glow-spin 6s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-	.glow-google.glow-spin::before {
-		animation: none;
-	}
 }
 
 /* --- Media na stronie "O mnie" ----------------------------------------- */

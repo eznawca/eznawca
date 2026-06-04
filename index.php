@@ -17,6 +17,7 @@ $router->get('/portfolio/{slug}', [PortfolioController::class, 'show']);
 $router->get('/faq',              [FaqController::class,       'index']);
 $router->get('/kontakt',          [ContactController::class,   'index']);
 $router->get('/polityka-prywatnosci', [PrivacyController::class, 'index']);
+$router->get('/sitemap.xml',      [SitemapController::class,   'index']);
 
 // --- Dispatch ----------------------------------------------------------------
 $router->dispatch($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);

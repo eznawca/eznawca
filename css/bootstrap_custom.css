@@ -1,8 +1,8 @@
 /* =========================================================================
    bootstrap_custom.css — customizacja Bootstrap 5.3 (tylko nadpisania BS).
-   Zawiera wspólne tokeny :root, z których korzysta też assets/index.css.
+   Zawiera wspólne tokeny :root, z których korzysta też css/index.css.
    Autorskie klasy/utility (np. .glow-google, .text-gradient) są w index.css.
-   Ładować PO bootstrap.min.css, a PRZED assets/index.css.
+   Ładować PO bootstrap.min.css, a PRZED css/index.css.
    ========================================================================= */
 
 :root {
@@ -20,7 +20,7 @@
 	--bs-link-color: var(--ez-primary);
 	--bs-link-color-rgb: 21, 119, 216;
 	--bs-link-hover-color: var(--ez-primary-700);
-	--bs-border-color: rgba(0, 0, 0, .25);
+	--bs-border-color: rgba(0, 0, 0, .1);
 
 	/* Zaokrąglenia — odrobinę bardziej miękkie niż domyślne */
 	--bs-border-radius: .625rem;
@@ -98,7 +98,22 @@
 
 /* Akordeon (FAQ): aktywny nagłówek w barwie marki */
 .accordion {
-	--bs-accordion-active-color: var(--ez-primary);
-	--bs-accordion-active-bg: rgba(var(--bs-primary-rgb), .08);
+	--bs-accordion-active-color: #fff;
 	--bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgba(0, 0, 0, .12);
+	/* Strzałka aktywnego nagłówka — biała (pod spodem gradient) */
+	--bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
 }
+
+.accordion-button {font-weight: 500; --bs-accordion-btn-color: #000}
+.accordion-button:not(.collapsed) {font-weight: 500}
+.accordion-button:not(.collapsed):focus {--bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.03)}
+.accordion-button:focus {--bs-accordion-btn-focus-box-shadow: none}
+.accordion-button:not(.collapsed) {
+	background-image: var(--ez-gradient);
+}
+.accordion-button:after {
+	--bs-accordion-btn-icon-width:1.25rem;
+	--bs-accordion-btn-icon-transition:0.5s ease;
+	--bs-accordion-btn-icon-transform:rotate(-180deg);
+}
+.accordion-button.collapsed {background-color:transparent}

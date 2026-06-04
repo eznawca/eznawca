@@ -1,7 +1,6 @@
 <?php
 
 return [
-	'schema' => 'page:1',
 	'id' => 'privacy',
 	'type' => 'page',
 	'route' => [

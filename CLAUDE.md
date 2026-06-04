@@ -28,10 +28,10 @@ Aktualnie: PHP 7.4. Planowane migracje: PHP 8.x
 
 ## CSS
 Bootstrap 5.3, customizowany przez:
-`assets/bootstrap_custom.css`.
+`css/bootstrap_custom.css`.
 Nie nadpisuj klas Bootstrap inline — zmiany globalne tylko przez ten plik.
 Nowe specyficzne klasy (konwencja wzorowana na Bootstrap) w pliku:
-`assets/index.css`
+`css/index.css`
 
 ## Preferencje kodowania
 - Stosuj kodowanie UTF-8

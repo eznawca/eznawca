@@ -1,5 +1,10 @@
 # Andrzej Mazur EZNAWCA - strona personalna - personal branding
 
+## Reguły dotyczące tokenów/kontekstu
+- Nie skanuj całego repozytorium, chyba że zostaniesz o to wyraźnie poproszony.
+- Ignoruj: vendor/ i katalogi wykluczone przez .gitignore.
+- Gdy kontekst rozmowy robi się duży lub kończy się większy etap pracy, zasugeruj użycie /compact.
+
 ## Git
 - Pracuj bezpośrednio na bieżącym branchu, nie twórz nowych branchy.
 - Nie commituj zmian samodzielnie.
@@ -70,10 +75,10 @@
 
 ## CSS
 - Bootstrap 5.3 jest ładowany z CDN.
-- Bootstrap customizowany jest przez `assets/bootstrap_custom.css`.
+- Bootstrap customizowany jest przez `css/bootstrap_custom.css`.
 - Nie nadpisuj klas Bootstrap inline.
-- Globalne zmiany tokenów, kolorów i wariantów Bootstrap rób w `assets/bootstrap_custom.css`.
-- Nowe specyficzne klasy, utility i style komponentów dodawaj w `assets/index.css`.
+- Globalne zmiany tokenów, kolorów i wariantów Bootstrap rób w `css/bootstrap_custom.css`.
+- Nowe specyficzne klasy, utility i style komponentów dodawaj w `css/index.css`.
 - Konwencja nazw klas ma być zbliżona do Bootstrap.
 - Nie dodawaj stylów inline w widokach, chyba że chodzi o wyjątkowo małą wartość dynamiczną, której nie da się sensownie przenieść do CSS.
 

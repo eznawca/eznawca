@@ -35,12 +35,12 @@ abstract class Controller
 	protected function meta(array $meta): array
 	{
 		return $meta + [
-			'title'       => 'Andrzej Mazur EZNAWCA',
-			'description' => 'Andrzej Mazur EZNAWCA — Full Stack PHP Developer dla branży e-commerce.',
-			'keywords'    => '',
-			'canonical'   => '',
-			'breadcrumb'  => [],   // [ ['label'=>..., 'url'=>...], ... ]
-			'jsonld'      => [],   // lista bloków JSON-LD (Phase 2: AEO)
+			'title' => SITE['name'],
+			'description' => SITE['description'],
+			'keywords' => '',
+			'canonical' => '',
+			'breadcrumb' => [],
+			'jsonld' => [],
 		];
 	}
 }
