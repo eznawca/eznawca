@@ -5,6 +5,11 @@
  * @author Andrzej Mazur <eznawca@gmail.com>
  */
 
+// --- Polyfille PHP 8.x dla starszych wersji (np. 7.4) ------------------------
+// Funkcji NIE da się autoloadować (autoloader działa tylko dla klas),
+// dlatego wczytujemy je natychmiastowo, jako pierwsze — będą dostępne wszędzie.
+require __DIR__ . '/upgrade_to_php8.lib.php';
+
 // --- Wykrycie środowiska -----------------------------------------------------
 // Lokalnie host nie zawiera kropki (np. "localhost", "eznawca-prj").
 define('LOCAL_HOST', strpos(@$_SERVER['HTTP_HOST'], '.') === false);

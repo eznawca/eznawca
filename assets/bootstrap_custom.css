@@ -1,38 +1,29 @@
 /* =========================================================================
-   bootstrap_custom.css — motyw EZNAWCA dla Bootstrap 5.3
-   Nadpisuje generyczne klasy/komponenty BS przez zmienne CSS (--bs-*).
-   Paleta elementów: aqua blue → blue raspberry.
-   Cienie: standardowe Bootstrap 5 (utility .shadow* bez zmian).
-   Wyróżnik specjalny: .glow-google — nasycona poświata „Google” dookoła.
+   bootstrap_custom.css — customizacja Bootstrap 5.3 (tylko nadpisania BS).
+   Zawiera wspólne tokeny :root, z których korzysta też assets/index.css.
+   Autorskie klasy/utility (np. .glow-google, .text-gradient) są w index.css.
    Ładować PO bootstrap.min.css, a PRZED assets/index.css.
    ========================================================================= */
 
 :root {
-	/* --- Tokeny marki ---------------------------------------------------- */
-	--ez-aqua:        #19D3E3;   /* aqua blue   */
-	--ez-raspberry:   #2F5BFF;   /* blue raspberry */
-	--ez-primary:     #1577D8;   /* solidny środek (czytelny na białym) */
-	--ez-primary-700: #0F5BAB;   /* ciemniejszy (hover/aktywne) */
+	/* Tokeny marki (--ez-primary i --ez-gradient używane też w index.css) */
+	--ez-aqua: #19D3E3;
+	--ez-raspberry: #2F5BFF;
+	--ez-primary: #1577D8;
+	--ez-primary-700: #0F5BAB;
 
-	--ez-gradient:        linear-gradient(135deg, var(--ez-aqua) 0%, var(--ez-raspberry) 100%);
-	--ez-gradient-soft:   linear-gradient(135deg, rgba(25,211,227,.12) 0%, rgba(47,91,255,.12) 100%);
+	--ez-gradient: linear-gradient(135deg, var(--ez-aqua) 0%, var(--ez-raspberry) 100%);
 
-	/* Kolory Google (do .glow-google) */
-	--g-blue:   #4285F4;
-	--g-green:  #34A853;
-	--g-yellow: #FBBC05;
-	--g-red:    #EA4335;
-
-	/* --- Nadpisanie motywu Bootstrap ------------------------------------- */
-	--bs-primary:        var(--ez-primary);
-	--bs-primary-rgb:    21, 119, 216;
-	--bs-link-color:     var(--ez-primary);
+	/* Nadpisanie motywu Bootstrap */
+	--bs-primary: var(--ez-primary);
+	--bs-primary-rgb: 21, 119, 216;
+	--bs-link-color: var(--ez-primary);
 	--bs-link-color-rgb: 21, 119, 216;
 	--bs-link-hover-color: var(--ez-primary-700);
 	--bs-border-color: rgba(0, 0, 0, .25);
 
 	/* Zaokrąglenia — odrobinę bardziej miękkie niż domyślne */
-	--bs-border-radius:    .625rem;
+	--bs-border-radius: .625rem;
 	--bs-border-radius-sm: .45rem;
 	--bs-border-radius-lg: .9rem;
 	--bs-border-radius-xl: 1.25rem;
@@ -43,23 +34,14 @@
 
 /* Tryb ciemny — dostroj akcenty */
 [data-bs-theme="dark"] {
-	--bs-primary:        #38B6E6;
-	--bs-primary-rgb:    56, 182, 230;
-	--bs-link-color:     #5BC8F0;
+	--bs-primary: #38B6E6;
+	--bs-primary-rgb: 56, 182, 230;
+	--bs-link-color: #5BC8F0;
 	--bs-link-color-rgb: 91, 200, 240;
 	--bs-link-hover-color: #8AD8F5;
 }
 
-/* --- Typografia ----------------------------------------------------------- */
-h1, .h1, h2, .h2, h3, .h3 {
-	letter-spacing: -.015em;
-	font-weight: 700;
-}
-.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
-	letter-spacing: -.03em;
-}
-
-/* --- Przyciski primary: gradient marki (cienie standardowe BS) ------------ */
+/* Przyciski primary: gradient marki (cienie standardowe BS) */
 .btn-primary {
 	--bs-btn-bg: var(--ez-primary);
 	--bs-btn-border-color: transparent;
@@ -93,41 +75,17 @@ h1, .h1, h2, .h2, h3, .h3 {
 	--bs-btn-active-bg: var(--ez-primary-700);
 }
 
-/* --- Karty: standardowy border BS, cień tylko z utility .shadow* ---------- */
+/* Karty: standardowy border BS (cień tylko z utility .shadow*) */
 .card {
 	--bs-card-border-color: rgba(0, 0, 0, .06);
 }
 
-/* --- Nawigacja: gradientowy znacznik aktywnej pozycji --------------------- */
-.navbar .nav-link {
-	position: relative;
-	font-weight: 500;
-}
-.navbar .nav-link.active {
-	color: var(--ez-primary);
-}
-.navbar .nav-link.active::after {
-	content: "";
-	position: absolute;
-	left: .75rem;
-	right: .75rem;
-	bottom: .15rem;
-	height: 2px;
-	border-radius: 2px;
-	background-image: var(--ez-gradient);
-}
-
-/* --- Linki: podkreślenie w kolorze marki ---------------------------------- */
-a {
-	text-underline-offset: .15em;
-}
-
-/* --- Badge / akcenty ------------------------------------------------------ */
+/* Badge: wariant primary w gradiencie marki */
 .badge.text-bg-primary {
 	background-image: var(--ez-gradient) !important;
 }
 
-/* --- Focus: pierścień w kolorze marki ------------------------------------- */
+/* Focus: neutralny pierścień (skala szarości) */
 .btn:focus-visible,
 .form-control:focus,
 .form-select:focus,
@@ -138,72 +96,9 @@ a {
 	outline: 0;
 }
 
-/* --- Akordeon (FAQ): aktywny nagłówek w barwie marki ---------------------- */
+/* Akordeon (FAQ): aktywny nagłówek w barwie marki */
 .accordion {
 	--bs-accordion-active-color: var(--ez-primary);
 	--bs-accordion-active-bg: rgba(var(--bs-primary-rgb), .08);
 	--bs-accordion-btn-focus-box-shadow: 0 0 0 .25rem rgba(0, 0, 0, .12);
-}
-
-/* --- Zaznaczenie tekstu --------------------------------------------------- */
-::selection {
-	background: rgba(0, 0, 0, .11);
-}
-
-/* --- Utility marki -------------------------------------------------------- */
-.text-gradient {
-	background: var(--ez-gradient);
-	-webkit-background-clip: text;
-	background-clip: text;
-	-webkit-text-fill-color: transparent;
-	color: transparent;
-}
-.bg-gradient-ez {
-	background-image: var(--ez-gradient);
-}
-.bg-gradient-ez-soft {
-	background-image: var(--ez-gradient-soft);
-}
-
-/* =========================================================================
-   .glow-google — wyróżnik specjalnych elementów.
-   Nasycona poświata (niebieski/zielony/żółty/czerwony) ROZŁOŻONA RÓWNO
-   DOOKOŁA (conic-gradient + rozmycie), bez przesunięcia w prawo/dół.
-   Użycie: owiń element, np. <div class="glow-google rounded"> ... </div>
-   (kontener NIE może mieć overflow:hidden — poświata wychodzi poza krawędź).
-   ========================================================================= */
-.glow-google {
-	position: relative;
-	z-index: 0;
-}
-.glow-google::before {
-	content: "";
-	position: absolute;
-	inset: -8px;                 /* równomiernie ze wszystkich stron */
-	z-index: -1;
-	border-radius: inherit;
-	background: conic-gradient(from 0deg,
-		var(--g-blue),
-		var(--g-green),
-		var(--g-yellow),
-		var(--g-red),
-		var(--g-blue));
-	filter: blur(16px) saturate(1.4);
-	opacity: .5;
-	pointer-events: none;
-}
-.glow-google:hover::before {
-	opacity: 1;
-	filter: blur(18px) saturate(1.5);
-}
-
-/* Wariant animowany (opcjonalny): .glow-google.glow-spin — wolny obrót barw */
-@keyframes ez-glow-spin {
-	to { transform: rotate(1turn); }
-}
-.glow-google.glow-spin::before {
-	animation: ez-glow-spin 6s linear infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-	.glow-google.glow-spin::before { animation: none; }
 }

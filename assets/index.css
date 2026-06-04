@@ -1,19 +1,47 @@
-/* Andrzej Mazur EZNAWCA — style witryny */
+/* Andrzej Mazur EZNAWCA — style witryny (autorskie klasy/utility).
+   Konwencja wzorowana na Bootstrap. Tokeny --ez-* / --g- pochodzą
+   z assets/bootstrap_custom.css (ładowanego wcześniej). */
 
-/* Sticky, półprzezroczyste menu z efektem blur */
+/* --- Typografia marki ---------------------------------------------------- */
+h1, .h1, h2, .h2, h3, .h3 {
+	letter-spacing: -.015em;
+	font-weight: 700;
+}
+.display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+	letter-spacing: -.03em;
+}
+
+/* --- Nawigacja: sticky, półprzezroczyste menu z efektem blur ------------- */
 .navbar-eznawca {
 	background-color: rgba(255, 255, 255, 0.72);
 	-webkit-backdrop-filter: saturate(180%) blur(10px);
 	backdrop-filter: saturate(180%) blur(10px);
 	will-change: transform;
 }
-
-/* Tryb ciemny (Bootstrap 5.3 data-bs-theme) */
 [data-bs-theme="dark"] .navbar-eznawca {
 	background-color: rgba(33, 37, 41, 0.72);
 }
 
-/* Najszerszy układ: standardowy container z górnym limitem 1400px */
+/* Aktywna pozycja menu + gradientowy znacznik */
+.navbar .nav-link {
+	position: relative;
+	font-weight: 500;
+}
+.navbar .nav-link.active {
+	color: var(--ez-primary);
+}
+.navbar .nav-link.active::after {
+	content: "";
+	position: absolute;
+	left: .75rem;
+	right: .75rem;
+	bottom: .15rem;
+	height: 2px;
+	border-radius: 2px;
+	background-image: var(--ez-gradient);
+}
+
+/* --- Układ: najszerszy container z górnym limitem 1400px ----------------- */
 @media (min-width: 1400px) {
 	.container,
 	.container-sm,
@@ -25,7 +53,7 @@
 	}
 }
 
-/* Delikatne podniesienie kart przy najechaniu */
+/* --- Karty: delikatne podniesienie przy najechaniu ---------------------- */
 .card {
 	transition: transform .15s ease, box-shadow .15s ease;
 }
@@ -33,7 +61,71 @@
 	transform: translateY(-2px);
 }
 
-/* Płynne przewijanie do kotwic */
+/* --- Drobiazgi ----------------------------------------------------------- */
+a {
+	text-underline-offset: .15em;
+}
 html {
 	scroll-behavior: smooth;
+}
+::selection {
+	background: rgba(0, 0, 0, .11);
+}
+
+/* --- Utility marki ------------------------------------------------------- */
+.text-gradient {
+	background: var(--ez-gradient);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	color: transparent;
+}
+.bg-gradient-ez {
+	background-image: var(--ez-gradient);
+}
+.bg-gradient-ez-soft {
+	background-image: var(--ez-gradient-soft);
+}
+
+/* =========================================================================
+   .glow-google — wyróżnik specjalnych elementów.
+   Nasycona poświata (niebieski/zielony/żółty/czerwony) równo dookoła
+   (conic-gradient + rozmycie). Owiń element; kontener bez overflow:hidden.
+   ========================================================================= */
+.glow-google {
+	position: relative;
+	z-index: 0;
+}
+.glow-google::before {
+	content: "";
+	position: absolute;
+	inset: -8px;
+	z-index: -1;
+	border-radius: inherit;
+	background: conic-gradient(from 0deg,
+		var(--g-blue),
+		var(--g-green),
+		var(--g-yellow),
+		var(--g-red),
+		var(--g-blue));
+	filter: blur(16px) saturate(1.4);
+	opacity: .5;
+	pointer-events: none;
+}
+.glow-google:hover::before {
+	opacity: 1;
+	filter: blur(18px) saturate(1.5);
+}
+
+/* Wariant animowany (opcjonalny): .glow-spin — wolny obrót barw */
+@keyframes ez-glow-spin {
+	to { transform: rotate(1turn); }
+}
+.glow-google.glow-spin::before {
+	animation: ez-glow-spin 6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+	.glow-google.glow-spin::before {
+		animation: none;
+	}
 }
