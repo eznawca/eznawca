@@ -35,3 +35,4 @@ foto/
 !/.claude/settings.json
 !/.claude/commands/
 !/.claude/commands/**
+/.*/
