@@ -1,7 +1,7 @@
 <?php
 /**
  * SEO + AEO — generowanie znaczników meta (1:1 z eznawca.pl) oraz danych
- * strukturalnych JSON-LD (Person, WebSite, BreadcrumbList + bloki stron).
+ * strukturalnych JSON-LD (Person, BreadcrumbList + bloki stron).
  *
  * Korzysta ze stałej SITE (config/site.php).
  *
@@ -94,7 +94,7 @@ class Seo
 	}
 
 	/**
-	 * Wypisz bloki JSON-LD: Person + WebSite (na każdej stronie) +
+	 * Wypisz bloki JSON-LD: Person (na każdej stronie) +
 	 * BreadcrumbList (jeśli jest breadcrumb) + bloki page-specific ($meta['jsonld']).
 	 * @param array<string,mixed> $meta
 	 */
@@ -114,17 +114,6 @@ class Seo
 			'jobTitle'      => SITE['jobTitle'],
 			'email'         => 'mailto:' . SITE['email'],
 			'sameAs'        => array_values(SITE['social']),
-		];
-
-		// WebSite
-		$blocks[] = [
-			'@context'   => 'https://schema.org',
-			'@type'      => 'WebSite',
-			'@id'        => SITE['url'] . '/#website',
-			'name'       => SITE['name'],
-			'url'        => SITE['url'],
-			'inLanguage' => SITE['lang'],
-			'author'     => ['@id' => SITE['url'] . '/#person'],
 		];
 
 		// BreadcrumbList

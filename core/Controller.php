@@ -3,7 +3,7 @@
  * Bazowy kontroler — wspólne renderowanie widoków .phtml w layoucie.
  *
  * Wzorzec: kontroler przygotowuje dane i meta, a view() składa stronę z
- * layouts/_header.phtml + widok + layouts/_footer.phtml.
+ * _header.phtml + widok + _footer.phtml.
  *
  * @author Andrzej Mazur <eznawca@gmail.com>
  */
@@ -21,9 +21,9 @@ abstract class Controller
 		$meta = $this->meta($meta);
 		extract($data, EXTR_SKIP);
 
-		require VIEW_PATH . '/layouts/_header.phtml';
+		require VIEW_PATH . '/_header.phtml';
 		require VIEW_PATH . '/' . $view . '.phtml';
-		require VIEW_PATH . '/layouts/_footer.phtml';
+		require VIEW_PATH . '/_footer.phtml';
 	}
 
 	/**

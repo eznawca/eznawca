@@ -23,15 +23,15 @@
 	- `index.php` rejestruje trasy.
 	- `core/Router.php` obsługuje routing, także parametry typu `/portfolio/{slug}`.
 	- `core/Controller.php` renderuje layout i widoki.
-	- `views/layouts/_header.phtml` i `views/layouts/_footer.phtml` składają layout.
+	- `views/_header.phtml` i `views/_footer.phtml` składają layout (płaski `views/`, partiale z prefiksem `_`).
 	- Widoki mają rozszerzenie `.phtml`.
-	- Dane treściowe trzymamy na razie w modelach PHP jako tablice, np. `models/*Model.php`.
-- Główna konfiguracja marki i domeny jest w `config/site.php`.
+	- Treść strony piszemy wprost w jej szablonie. Kolekcje (np. wideo, karty) jako lokalna tablica + partial `views/_*_grid.phtml` włączany przez `require VIEW_PATH . '/_*.phtml'`.
+- Wartości konfiguracyjne marki i domeny (nazwa, URL, social, SEO) trzymaj w `data/site.php`; `config/site.php` jedynie definiuje z nich stałą `SITE`.
 - SEO/AEO jest scentralizowane w `core/Seo.php`.
 - Dane statyczne projektu trzymaj w `data/*.php`. To jest szybka, wersjonowana analogia bazy danych.
-- Każda publiczna strona danych powinna mieć standard: `schema`, `id`, `type`, `route`, `seo`, `blocks`.
+- `data/*.php` ma być chude. Standard rekordu strony: `id`, `type`, `route`, `seo` (opcjonalnie `sitemap`). Trzymaj w danych tylko to, co czytane POZA szablonem: meta, menu, breadcrumb, sitemap, wejście JSON-LD.
+- Wyjątki będące danymi, bo zasilają JSON-LD/sitemap: `faq` → `items.questions` (`q`/`a`), portfolio → cienki `items.projects` (`slug`, `title`, `subtitle`, `lead`). Pozostałą treść pisz w szablonie.
 - Breadcrumb generuj z `route.parent` przez `SiteData::breadcrumb()`, a ręczny breadcrumb traktuj jako wyjątek.
-- Powtarzalne sekcje strony opisuj jako bloki z polem `type`, np. `profile`, `card_grid`, `video_grid`, `faq`.
 - Modele mają być cienką warstwą nad `SiteData`, a nie miejscem przechowywania dużych tablic danych.
 
 ## Podsystemy
@@ -57,16 +57,18 @@
 	- trasę w `index.php`,
 	- kontroler w `controllers/`,
 	- widok `.phtml` w `views/`,
-	- dane w modelu, jeżeli treść jest większa albo będzie używana w kilku miejscach,
-	- wpis w `sitemap.xml`, jeżeli strona ma być indeksowana.
+	- wpis w `data/*.php` tylko dla tego, co czytane poza szablonem (meta, sitemap, JSON-LD); treść strony pisz w szablonie,
+	- stronę w dynamicznym `sitemap.xml`, jeżeli ma być indeksowana.
 - Każda indeksowana strona powinna mieć:
 	- `title`,
 	- `description`,
 	- `canonical`,
 	- breadcrumb, z wyjątkiem strony głównej,
 	- JSON-LD, gdy pasuje do typu treści.
-- Dla pytań i odpowiedzi używaj `FAQPage` JSON-LD.
-- Dla projektów portfolio używaj danych zgodnych z `CreativeWork`, tak jak robi to `PortfolioController`.
+- Dla pytań i odpowiedzi używaj `FAQPage` JSON-LD (`FaqController`, z `faq.items.questions`).
+- Każdy projekt portfolio ma własny szablon `views/portfolio-{slug}.phtml`; `PortfolioController::show` mapuje slug na plik i zwraca 404, gdy pliku brak.
+- Cienki rekord w `items.projects` (title, lead) i pełna treść w szablonie projektu MUSZĄ być spójne — przy zmianie tytułu/leadu aktualizuj oba miejsca.
+- JSON-LD trzymaj minimalny: Person + BreadcrumbList na każdej stronie, `FAQPage` na `/faq`, chudy `CreativeWork` na projekcie (`name`, `url`, `author` → Person). Bez `WebSite`.
 
 ## JavaScript
 - Vanilla JS ES6+ bez jQuery.
@@ -89,8 +91,9 @@
 - Używaj pojedynczych spacji wokół operatorów zgodnie z czytelnością i standardami PSR.
 - Nie twórz wizualnych kolumn spacjami.
 - Komentarze dodawaj tylko wtedy, gdy wyjaśniają decyzję lub złożony fragment.
-- Dla danych wyświetlanych z zewnątrz używaj `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`.
-- Jeżeli widok wypisuje zaufany HTML z modelu, zostaw przy tym krótki komentarz, tak jak w `views/about.phtml`.
+- W szablonach używaj globalnego helpera `h()` (= `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`): escapuj w atrybutach, a między tagami wypisuj zaufaną treść wprost (`<?= $var ?>`); liczby rzutuj `(int)`.
+- Nie pre-escapuj danych w `data/` — te same dane trafiają też do JSON-LD i XML sitemap, więc kodowanie pod HTML rozbiłoby tamte konteksty.
+- Kolekcyjne partiale opisuj kontraktem `/** @var array $x */`, tak jak w `views/_video_grid.phtml`.
 
 ## Vendor, narzędzia i pliki poboczne
 - Nie edytuj `vendor/` ręcznie.

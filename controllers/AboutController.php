@@ -6,11 +6,6 @@ class AboutController extends Controller
 {
 	public function index(): void
 	{
-		$model = new AboutModel();
-		$page = $model->page();
-
-		$this->view('page', [
-			'page' => $page,
-		], SiteData::meta('about'));
+		$this->view('about', [], SiteData::meta('about'));
 	}
 }

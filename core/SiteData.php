@@ -113,17 +113,6 @@ class SiteData
 		return array_merge($items, $extra);
 	}
 
-	/** @return array<int,array<string,mixed>> */
-	public static function blocks(string $id): array
-	{
-		$page = self::page($id);
-		if ($page === null) {
-			return [];
-		}
-
-		return (array)($page['blocks'] ?? []);
-	}
-
 	/** @return array<int|string,mixed> */
 	public static function items(string $id, string $key): array
 	{

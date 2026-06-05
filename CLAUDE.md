@@ -33,11 +33,18 @@ Nie nadpisuj klas Bootstrap inline — zmiany globalne tylko przez ten plik.
 Nowe specyficzne klasy (konwencja wzorowana na Bootstrap) w pliku:
 `css/index.css`
 
+## Widoki i escapowanie
+Płaski `views/` — partiale z prefiksem `_` (`_header`, `_footer`, `_*_grid`), pełne widoki w korzeniu.
+Treść strony piszemy wprost w szablonie; `data/*.php` trzyma tylko dane czytane poza szablonem (meta, sitemap, JSON-LD).
+W szablonach używaj globalnego helpera `h()` (= `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')`): escapuj w atrybutach,
+między tagami wypisuj zaufaną treść wprost `<?= $var ?>`, liczby rzutuj `(int)`. Nie pre-escapuj danych w `data/`.
+
 ## Preferencje kodowania
 - Stosuj kodowanie UTF-8
 - Używaj tabulatorów do wcięć.
 - Nie wyrównuj kody za pomocą spacji przed znakami równości "=", czy też znaku zapytania "?", czy dwukropka ":".
-- Dostępna jest biblioteka polyfilli `core/upgrade_to_php8.lib.php` rozszerza PHP 5.6 o funkcje:
+- Dostępna jest biblioteka polyfilli `core/upgrade_to_php8.lib.php` rozszerza środowisko o funkcje dostępne 
+  w nowszych wersjach PHP:
   array_is_list, array_key_first, array_key_last, fdiv, get_debug_type, get_mangled_object_vars, hrtime, intdiv,
   is_countable, is_iterable, json_validate, mb_chr, mb_ord, mb_scrub, mb_str_pad, mb_str_split, password_algos,
   random_bytes, random_int, str_contains, str_decrement, str_ends_with, str_increment, str_starts_with.

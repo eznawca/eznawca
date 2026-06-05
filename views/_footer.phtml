@@ -8,9 +8,9 @@
 		<?php $socialIcons = ['LinkedIn' => 'linkedin', 'YouTube' => 'youtube', 'Facebook' => 'facebook', 'Instagram' => 'instagram']; ?>
 		<nav class="d-flex flex-wrap align-items-center gap-3 small">
 			<?php foreach (SITE['social'] as $label => $url): ?>
-			<a class="link-secondary text-decoration-none" href="<?= htmlspecialchars($url) ?>" target="_blank" rel="noopener" title="<?= htmlspecialchars($label) ?>">
-				<i class="bi bi-<?= htmlspecialchars($socialIcons[$label] ?? 'link-45deg') ?>" aria-hidden="true"></i>
-				<span class="ms-1"><?= htmlspecialchars($label) ?></span>
+			<a class="link-secondary text-decoration-none" href="<?= h($url) ?>" target="_blank" rel="noopener" title="<?= h($label) ?>">
+				<i class="bi bi-<?= h($socialIcons[$label] ?? 'link-45deg') ?>" aria-hidden="true"></i>
+				<span class="ms-1"><?= $label ?></span>
 			</a>
 			<?php endforeach; ?>
 			<a class="link-secondary text-decoration-none" href="/mat/" target="_blank" rel="noopener"><i class="bi bi-calculator" aria-hidden="true"></i><span class="ms-1">Matematyk</span></a>

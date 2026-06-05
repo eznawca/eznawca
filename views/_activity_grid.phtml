@@ -1,0 +1,25 @@
+<?php /** @var array $activity  lista kart: image, imageExt, title, subtitle, text, url */ ?>
+<div class="row g-4">
+	<?php foreach ($activity as $item): ?>
+	<div class="col-md-6 col-lg-4">
+		<div class="card h-100 shadow-sm overflow-hidden">
+			<a href="<?= h($item['url']) ?>" target="_blank" rel="noopener">
+				<picture>
+					<source srcset="<?= h($item['image']) ?>.webp" type="image/webp">
+					<img class="card-img-top about-activity-image" src="<?= h($item['image']) ?>.<?= h($item['imageExt']) ?>" alt="<?= h($item['title']) ?>" loading="lazy">
+				</picture>
+			</a>
+			<div class="card-body d-flex flex-column">
+				<h3 class="h5 card-title mb-1"><?= $item['title'] ?></h3>
+				<?php if (!empty($item['subtitle'])): ?>
+				<p class="card-subtitle text-secondary small mb-2"><?= $item['subtitle'] ?></p>
+				<?php endif; ?>
+				<p class="card-text flex-grow-1"><?= $item['text'] ?></p>
+				<a class="btn btn-sm btn-outline-primary align-self-start mt-2" href="<?= h($item['url']) ?>" target="_blank" rel="noopener">
+					Otwórz <i class="ms-1 bi bi-box-arrow-up-right" aria-hidden="true"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+	<?php endforeach; ?>
+</div>

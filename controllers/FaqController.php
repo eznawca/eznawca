@@ -7,7 +7,6 @@ class FaqController extends Controller
 	public function index(): void
 	{
 		$faq = (new FaqModel())->all();
-		$page = SiteData::page('faq') ?? [];
 
 		// FAQPage — dane strukturalne dla wyszukiwarek i modeli językowych.
 		$mainEntity = [];
@@ -30,8 +29,8 @@ class FaqController extends Controller
 		$meta = SiteData::meta('faq');
 		$meta['jsonld'] = [$faqPage];
 
-		$this->view('page', [
-			'page' => $page,
+		$this->view('faq', [
+			'faq' => $faq,
 		], $meta);
 	}
 }

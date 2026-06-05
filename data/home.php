@@ -21,5 +21,4 @@ return [
 	'content' => [
 		'lead' => 'Full Stack PHP Developer dla branży e-commerce.',
 	],
-	'blocks' => [],
 ];

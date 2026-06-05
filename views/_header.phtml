@@ -7,11 +7,11 @@ $navItems = SiteData::menu();
 $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') ?: '/';
 ?>
 <!doctype html>
-<html lang="<?= htmlspecialchars(SITE['lang']) ?>">
+<html lang="<?= h(SITE['lang']) ?>">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= htmlspecialchars($meta['title']) ?></title>
+	<title><?= $meta['title'] ?></title>
 
 	<?php Seo::meta($meta); ?>
 
@@ -37,7 +37,7 @@ $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/
 				<?php foreach ($navItems as $url => $label):
 					$active = ($currentPath === $url) || ($url !== '/' && strpos($currentPath, $url) === 0); ?>
 				<li class="nav-item">
-					<a class="nav-link<?= $active ? ' active' : '' ?>"<?= $active ? ' aria-current="page"' : '' ?> href="<?= $url ?>"><?= $label ?></a>
+					<a class="nav-link<?= $active ? ' active' : '' ?>"<?= $active ? ' aria-current="page"' : '' ?> href="<?= h($url) ?>"><?= $label ?></a>
 				</li>
 				<?php endforeach; ?>
 			</ul>
@@ -52,9 +52,9 @@ $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/
 			<?php $last = count($meta['breadcrumb']) - 1;
 			foreach ($meta['breadcrumb'] as $i => $crumb): ?>
 				<?php if ($i === $last): ?>
-				<li class="breadcrumb-item active" aria-current="page"><?= htmlspecialchars($crumb['label']) ?></li>
+				<li class="breadcrumb-item active" aria-current="page"><?= $crumb['label'] ?></li>
 				<?php else: ?>
-				<li class="breadcrumb-item"><a href="<?= htmlspecialchars($crumb['url']) ?>"><?= htmlspecialchars($crumb['label']) ?></a></li>
+				<li class="breadcrumb-item"><a href="<?= h($crumb['url']) ?>"><?= $crumb['label'] ?></a></li>
 				<?php endif; ?>
 			<?php endforeach; ?>
 		</ol>

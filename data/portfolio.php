@@ -18,7 +18,8 @@ return [
 		'changefreq' => 'monthly',
 		'priority' => '0.9',
 	],
-	'blocks' => [],
+	// Cienki indeks pod listę, SEO i CreativeWork. Pełna treść projektu jest w
+	// views/portfolio-{slug}.phtml — przy zmianie title/lead aktualizuj oba miejsca.
 	'items' => [
 		'projects' => [
 			'matematyk' => [
@@ -26,22 +27,12 @@ return [
 				'title' => 'Matematyk',
 				'subtitle' => 'edukacyjny program desktop',
 				'lead' => 'Kompleksowy program edukacyjny do matematyki — geometria, arytmetyka, równania, wzory.',
-				'description' => 'Autorski program do nauki matematyki przez samodzielne rozwiązywanie zadań. Zawiera kompletny program szkolny od klasy IV do VIII wraz ze zbiorem zadań egzaminacyjnych do szkół średnich. To nie kolejna multimedialna zabawka — głównym celem jest realna nauka matematyki.',
-				'year' => '2008',
-				'tech' => ['Aplikacja desktop', 'Edukacja'],
-				'url' => '/mat/',
-				'external' => false,
 			],
 			'proline' => [
 				'slug' => 'proline',
 				'title' => 'Proline',
 				'subtitle' => 'e-commerce',
 				'lead' => 'Projekt z obszaru e-commerce — sklep internetowy i procesy e-sprzedaży.',
-				'description' => 'Rozwiązanie e-commerce, przy którym odpowiadałem za warstwę back-end w PHP oraz optymalizację procesów e-marketingu i e-sprzedaży.',
-				'year' => '',
-				'tech' => ['PHP', 'e-commerce', 'Back-end'],
-				'url' => '',
-				'external' => false,
 			],
 		],
 	],

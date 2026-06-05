@@ -18,5 +18,4 @@ return [
 		'changefreq' => 'yearly',
 		'priority' => '0.2',
 	],
-	'blocks' => [],
 ];

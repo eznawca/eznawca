@@ -80,3 +80,11 @@ if (!function_exists('rb')) {
 		exit;
 	}
 }
+
+// --- Helper widoku -----------------------------------------------------------
+if (!function_exists('h')) {
+	/** Escape do kontekstu HTML (przede wszystkim atrybuty). */
+	function h($s): string {
+		return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
+	}
+}
