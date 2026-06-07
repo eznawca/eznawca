@@ -29,7 +29,6 @@ desktop.ini
 foto-aktion/
 foto/
 /vendor/
-/composer.lock
 /composer.phar
 /.claude/
 !/.claude/CLAUDE.md
