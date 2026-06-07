@@ -11,7 +11,7 @@ $currentPath = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title><?= $meta['title'] ?></title>
+	<title><?= h($meta['title']) ?></title>
 
 	<?php Seo::meta($meta); ?>
 

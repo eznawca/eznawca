@@ -1,6 +1,6 @@
 {
 	"require": {
-		"eznawca/comm": "^1.0.2",
+		"eznawca/comm": "^2.0",
 		"ext-mbstring": "*"
 	},
 	"autoload": {

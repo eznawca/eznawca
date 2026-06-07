@@ -9,12 +9,6 @@
  */
 class Seo
 {
-	/** Skrót na htmlspecialchars. */
-	private static function e(string $s): string
-	{
-		return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
-	}
-
 	/** Adres bezwzględny z podanej ścieżki. */
 	public static function absUrl(string $path): string
 	{
@@ -57,23 +51,23 @@ class Seo
 		$ogImage   = self::absUrl((string)($meta['ogImage'] ?? SITE['ogImage']));
 		$title     = (string)($meta['title'] ?? SITE['name']);
 
-		echo '<meta name="description" content="' . self::e($desc) . '">' . PHP_EOL;
-		echo '<meta name="keywords" content="' . self::e($keywords) . '">' . PHP_EOL;
+		echo '<meta name="description" content="' . h($desc) . '">' . PHP_EOL;
+		echo '<meta name="keywords" content="' . h($keywords) . '">' . PHP_EOL;
 		echo '<meta name="robots" content="index, follow">' . PHP_EOL;
-		echo '<meta name="author" content="' . self::e(SITE['author']) . '">' . PHP_EOL;
-		echo '<meta name="copyright" content="Copyright &copy; ' . date('Y') . ' ' . self::e(SITE['name']) . '">' . PHP_EOL;
+		echo '<meta name="author" content="' . h(SITE['author']) . '">' . PHP_EOL;
+		echo '<meta name="copyright" content="Copyright &copy; ' . date('Y') . ' ' . h(SITE['name']) . '">' . PHP_EOL;
 		if ($canonical !== '') {
-			echo '<link rel="canonical" href="' . self::e($canonical) . '">' . PHP_EOL;
+			echo '<link rel="canonical" href="' . h($canonical) . '">' . PHP_EOL;
 		}
 
 		// Open Graph
-		echo '<meta property="og:locale" content="' . self::e(SITE['locale']) . '">' . PHP_EOL;
-		echo '<meta property="og:type" content="' . self::e($ogType) . '">' . PHP_EOL;
-		echo '<meta property="og:title" content="' . self::e($title) . '">' . PHP_EOL;
-		echo '<meta property="og:description" content="' . self::e($desc) . '">' . PHP_EOL;
-		echo '<meta property="og:url" content="' . self::e($canonical !== '' ? $canonical : SITE['url']) . '">' . PHP_EOL;
-		echo '<meta property="og:site_name" content="' . self::e(SITE['name']) . '">' . PHP_EOL;
-		echo '<meta property="og:image" content="' . self::e($ogImage) . '">' . PHP_EOL;
+		echo '<meta property="og:locale" content="' . h(SITE['locale']) . '">' . PHP_EOL;
+		echo '<meta property="og:type" content="' . h($ogType) . '">' . PHP_EOL;
+		echo '<meta property="og:title" content="' . h($title) . '">' . PHP_EOL;
+		echo '<meta property="og:description" content="' . h($desc) . '">' . PHP_EOL;
+		echo '<meta property="og:url" content="' . h($canonical !== '' ? $canonical : SITE['url']) . '">' . PHP_EOL;
+		echo '<meta property="og:site_name" content="' . h(SITE['name']) . '">' . PHP_EOL;
+		echo '<meta property="og:image" content="' . h($ogImage) . '">' . PHP_EOL;
 		echo '<meta name="twitter:card" content="summary_large_image">' . PHP_EOL;
 
 		// Ikony
@@ -84,12 +78,12 @@ class Seo
 
 		// Weryfikacja Google
 		if (!empty(SITE['googleVerification'])) {
-			echo '<meta name="google-site-verification" content="' . self::e(SITE['googleVerification']) . '">' . PHP_EOL;
+			echo '<meta name="google-site-verification" content="' . h(SITE['googleVerification']) . '">' . PHP_EOL;
 		}
 
 		// Preconnect (szybsze ładowanie zasobów zewnętrznych)
 		foreach ((array)(SITE['preconnect'] ?? []) as $host) {
-			echo '<link rel="preconnect" href="' . self::e($host) . '" crossorigin>' . PHP_EOL;
+			echo '<link rel="preconnect" href="' . h($host) . '" crossorigin>' . PHP_EOL;
 		}
 	}
 

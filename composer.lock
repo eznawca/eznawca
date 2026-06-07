@@ -4,35 +4,35 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73af4f0219df8dfc4a58094cdb4e6342",
+    "content-hash": "8ed4d58b520d13fe371c1b97fd431930",
     "packages": [
         {
             "name": "eznawca/comm",
-            "version": "v1.0.2",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eznawca/Comm.git",
-                "reference": "0a9b150efcaa20b3f05329ad673712418897dd41"
+                "reference": "6bc4ea1f7ec9f9d424c3161383f6ffabaf0be592"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eznawca/Comm/zipball/0a9b150efcaa20b3f05329ad673712418897dd41",
-                "reference": "0a9b150efcaa20b3f05329ad673712418897dd41",
+                "url": "https://api.github.com/repos/eznawca/Comm/zipball/6bc4ea1f7ec9f9d424c3161383f6ffabaf0be592",
+                "reference": "6bc4ea1f7ec9f9d424c3161383f6ffabaf0be592",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-mbstring": "*",
                 "ext-zlib": "*",
-                "php": "^7.3"
+                "php": "^5.6 || ^7.4"
             },
             "type": "library",
             "autoload": {
                 "files": [
-                    "lib/global_functions.php"
+                    "src/global_functions.php"
                 ],
                 "psr-4": {
-                    "Eznawca\\Comm\\": "lib/"
+                    "Eznawca\\Comm\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -59,9 +59,9 @@
             ],
             "support": {
                 "issues": "https://github.com/eznawca/Comm/issues",
-                "source": "https://github.com/eznawca/Comm/tree/v1.0.2"
+                "source": "https://github.com/eznawca/Comm/tree/v2.0.0"
             },
-            "time": "2021-07-26T01:43:30+00:00"
+            "time": "2026-06-06T23:14:10+00:00"
         }
     ],
     "packages-dev": [],
@@ -70,7 +70,9 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "ext-mbstring": "*"
+    },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.2.0"
 }
