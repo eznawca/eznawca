@@ -1,7 +1,7 @@
 <?php
 /**
  * Dynamiczny sitemap.xml generowany z warstwy danych (jedno źródło prawdy).
- * Strony z data/*.php (pole route.path + sitemap) + projekty portfolio + /mat/.
+ * Strony z data/*.php (pole route.path + sitemap) + /mat/.
  */
 class SitemapController
 {
@@ -20,17 +20,6 @@ class SitemapController
 				'loc' => $base . $path,
 				'changefreq' => $sm['changefreq'] ?? null,
 				'priority' => $sm['priority'] ?? null,
-			];
-		}
-
-		foreach ((new PortfolioModel())->all() as $project) {
-			if (empty($project['slug'])) {
-				continue;
-			}
-			$urls[] = [
-				'loc' => $base . '/portfolio/' . $project['slug'],
-				'changefreq' => 'yearly',
-				'priority' => '0.6',
 			];
 		}
 

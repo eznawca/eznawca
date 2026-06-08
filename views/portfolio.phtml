@@ -1,20 +1,83 @@
-<?php /** @var array $projects  lista projektów: slug, title, subtitle, lead */ ?>
-<section>
-	<h1 class="mb-4">Portfolio</h1>
-	<div class="row g-4">
-		<?php foreach ($projects as $p): ?>
-		<div class="col-md-6 col-lg-4">
-			<div class="card h-100 shadow-sm">
-				<div class="card-body d-flex flex-column">
-					<h2 class="h5 card-title mb-1"><?= $p['title'] ?></h2>
-					<?php if (!empty($p['subtitle'])): ?>
-					<h3 class="h6 card-subtitle text-secondary mb-2"><?= $p['subtitle'] ?></h3>
-					<?php endif; ?>
-					<p class="card-text flex-grow-1"><?= $p['lead'] ?></p>
-					<a class="btn btn-sm btn-outline-primary mt-2 align-self-start" href="/portfolio/<?= h($p['slug']) ?>">Szczegóły</a>
+<?php /** @var array $projects  oś czasu: years, role, company, url, tech[], desc, logo, shot, icon */ ?>
+<section class="portfolio-timeline">
+	<header class="text-center mb-5">
+		<h1 class="display-4 fw-bold mb-1">Portfolio <span class="text-gradient">projektów</span></h1>
+		<p class="lead text-secondary">Wybrane projekty i współprace</p>
+	</header>
+
+	<ol class="timeline list-unstyled m-0">
+		<?php foreach ($projects as $i => $p):
+			$side = ($i % 2 === 0) ? 'tl-left' : 'tl-right';
+			$external = isset($p['url']) && strncmp((string)$p['url'], 'http', 4) === 0;
+		?>
+		<li class="tl-item <?= $side ?>" id="proj-<?= h($p['slug']) ?>">
+
+			<div class="tl-node" aria-hidden="true">
+				<?php if (!empty($p['logo'])): ?>
+				<img src="/img/logos/<?= h($p['logo']) ?>" alt="" class="tl-node-logo" loading="lazy" decoding="async">
+				<?php else: ?>
+				<i class="bi <?= h($p['icon'] ?? 'bi-briefcase') ?>"></i>
+				<?php endif; ?>
+			</div>
+
+			<p class="tl-year"><?= $p['years'] ?></p>
+
+			<div class="tl-card">
+				<div class="tl-card-head">
+					<h2 class="h5 tl-role mb-1"><?= $p['role'] ?></h2>
+					<p class="tl-company mb-0">
+						<?php if (!empty($p['url'])): ?>
+						<a href="<?= h($p['url']) ?>"<?= $external ? ' target="_blank" rel="noopener"' : '' ?>>
+							<?= $p['company'] ?><?php if ($external): ?> <i class="bi bi-box-arrow-up-right small" aria-hidden="true"></i><?php endif; ?>
+						</a>
+						<?php else: ?>
+						<?= $p['company'] ?>
+						<?php endif; ?>
+					</p>
 				</div>
+
+				<div class="tl-card-main">
+					<p class="tl-desc text-secondary mb-0"><?= $p['desc'] ?></p>
+					<?php if (!empty($p['shot'])): ?>
+					<button type="button" class="tl-shot"
+						data-shot-src="/img/website/full/<?= h($p['shot']) ?>.webp"
+						data-shot-alt="<?= h($p['company'] . ' — ' . $p['role']) ?>"
+						data-shot-caption="<?= h($p['company'] . ' · ' . $p['years']) ?>"
+						aria-label="Powiększ: <?= h($p['company']) ?>">
+						<img src="/img/website/thumb/<?= h($p['shot']) ?>.webp"
+							alt="<?= h($p['company']) ?> — miniatura"
+							width="480" height="384"
+							loading="lazy" decoding="async">
+						<span class="tl-shot-zoom" aria-hidden="true"><i class="bi bi-zoom-in"></i></span>
+					</button>
+					<?php endif; ?>
+				</div>
+
+				<?php if (!empty($p['tech'])): ?>
+				<ul class="tl-tags list-unstyled d-flex flex-wrap gap-2 m-0">
+					<?php foreach ($p['tech'] as $t): ?>
+					<li class="tl-tag"><?= $t ?></li>
+					<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
+			</div>
+
+		</li>
+		<?php endforeach; ?>
+	</ol>
+</section>
+
+<!-- Lightbox powiększeń miniatur (obsługa: js/portfolio.js) -->
+<div class="modal fade" id="shotModal" tabindex="-1" aria-hidden="true" aria-labelledby="shotModalCaption">
+	<div class="modal-dialog modal-xl modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header border-0 py-2">
+				<p class="modal-title small text-secondary m-0" id="shotModalCaption" data-shot-caption></p>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+			</div>
+			<div class="modal-body pt-0 text-center">
+				<img src="" alt="" class="img-fluid rounded" data-shot-img>
 			</div>
 		</div>
-		<?php endforeach; ?>
 	</div>
-</section>
+</div>
