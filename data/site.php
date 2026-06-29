@@ -8,8 +8,17 @@ return [
 	'lang' => 'pl',
 	'author' => 'Andrzej Mazur',
 	'email' => 'eznawca@gmail.com',
-	'jobTitle' => 'Full Stack PHP Developer',
+	'jobTitle' => 'Senior PHP Developer',
 	'description' => 'Andrzej Mazur EZNAWCA — programista PHP i Web Developer. Tworzę rozwiązania back-end dla branży e-commerce.',
+
+	// Dane zasilające Person JSON-LD (AEO/GEO) — czytane w core/Seo.php.
+	'award' => 'Złoty medal — XVI Mistrzostwa Polski No-Gi Jiu-Jitsu 2026 (Master 4, biały pas, +97,5 kg)',
+	'knowsAbout' => [
+		'PHP', 'Shopware', 'MySQL', 'REST API', 'e-commerce',
+		'Web Performance', 'SEO', 'GA4', 'Google Ads',
+		'migracja legacy PHP', 'Git', 'Trunk-Based Development',
+		'programowanie wspomagane AI',
+	],
 
 	'ogImage' => '/img/andrzej-mazur-eznawca.jpg',
 	'logo' => '/img/eznawca-logo.svg',

@@ -81,3 +81,16 @@ if (!function_exists('h')) {
 		return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8');
 	}
 }
+
+if (!function_exists('icon')) {
+	/**
+	 * Ikona z SVG sprite (definicje w views/_icons.phtml, dołączane raz w _header).
+	 * Zwraca <svg><use href="#icon-NAZWA"></use></svg>. Kolor nadaje się klasą przy
+	 * wyświetlaniu (np. icon('php', 'color-php')) — symbol dziedziczy currentColor.
+	 */
+	function icon(string $name, string $class = ''): string {
+		$cls = 'ez-icon ez-icon-' . $name . ($class !== '' ? ' ' . $class : '');
+		return '<svg class="' . h($cls) . '" aria-hidden="true" focusable="false">'
+			. '<use href="#icon-' . h($name) . '"></use></svg>';
+	}
+}

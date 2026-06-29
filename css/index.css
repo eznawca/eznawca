@@ -3,11 +3,18 @@
    z css/bootstrap_custom.css (ładowanego wcześniej). */
 
 :root {
-	/* Kolory Google — używane tylko tutaj (.glow-google) */
+	/* Kolory marki „Google" — używane w poświatach (.glow-google, .hover-glow, .card) */
 	--g-blue: #4285F4;
 	--g-green: #34A853;
 	--g-yellow: #FBBC05;
 	--g-red: #EA4335;
+	/* Gotowy gradient poświaty — jedno źródło prawdy dla wszystkich efektów */
+	--g-conic: conic-gradient(from 0deg,
+		var(--g-blue),
+		var(--g-green),
+		var(--g-yellow),
+		var(--g-red),
+		var(--g-blue));
 }
 
 /* --- Typografia marki ---------------------------------------------------- */
@@ -61,12 +68,11 @@ h1, .h1, h2, .h2, h3, .h3 {
 	}
 }
 
-/* --- Karty: delikatne podniesienie przy najechaniu ---------------------- */
+/* --- Karty: hover obsłużony poświatą (.card glow niżej). Bez transformu —
+   transform tworzy kontekst stackingu, przez który poświata weszłaby do
+   środka karty zamiast zostać obwódką. */
 .card {
-	transition: transform .15s ease, box-shadow .15s ease;
-}
-.card:hover {
-	transform: translateY(-2px);
+	transition: box-shadow .15s ease;
 }
 
 /* --- Drobiazgi ----------------------------------------------------------- */
@@ -89,6 +95,29 @@ html {
 	color: transparent;
 }
 
+.color-php {
+	color: #6b58ff;
+}
+.color-shopware {
+	color: #189EFF;
+}
+
+/* --- Ikony z SVG sprite (views/_icons.phtml, helper icon()) ------------- */
+.ez-sprite {
+	display: none;
+}
+.ez-icon {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	vertical-align: -.125em;
+	fill: currentColor;
+}
+/* PHP — logo szersze niż wysokie (viewBox 100×50) */
+.ez-icon-php {
+	width: 2em;
+}
+
 /* =========================================================================
    .glow-google — wyróżnik specjalnych elementów.
    Nasycona poświata (niebieski/zielony/żółty/czerwony) równo dookoła
@@ -104,12 +133,7 @@ html {
 	inset: -8px;
 	z-index: -1;
 	border-radius: inherit;
-	background: conic-gradient(from 0deg,
-		var(--g-blue),
-		var(--g-green),
-		var(--g-yellow),
-		var(--g-red),
-		var(--g-blue));
+	background: var(--g-conic);
 	filter: blur(16px) saturate(1.4);
 	opacity: .5;
 	pointer-events: none;
@@ -117,6 +141,46 @@ html {
 .glow-google:hover::before {
 	opacity: 1;
 	filter: blur(18px) saturate(1.5);
+}
+
+/* =========================================================================
+   .hover-glow — miękka kolorowa poświata na hover/focus (łagodny wariant
+   .glow-google). Stosowana wszędzie tym samym efektem: .hover-glow
+   (miniatury portfolio, okładki filmów) oraz wszystkie karty Bootstrap
+   (.card). Element nie może mieć overflow:hidden; border-radius dziedziczony.
+   ========================================================================= */
+.hover-glow {
+	position: relative;
+	z-index: 0;
+}
+/* .card: bez własnego kontekstu stackingu (bez z-index/transformu), aby
+   poświata ::before (z-index:-1) trafiła POD nieprzezroczyste tło karty
+   i była widoczna tylko jako obwódka, a nie w środku card-body. */
+.card,
+.stat {
+	position: relative;
+}
+.hover-glow::before,
+.card::before,
+.stat::before {
+	content: "";
+	position: absolute;
+	inset: -6px;
+	z-index: -1;
+	border-radius: inherit;
+	background: var(--g-conic);
+	filter: blur(13px) saturate(1.1);
+	opacity: 0;
+	transition: opacity .25s ease;
+	pointer-events: none;
+}
+.hover-glow:hover::before,
+.hover-glow:focus-visible::before,
+.card:hover::before,
+.card:focus-within::before,
+.stat:hover::before,
+.stat:focus-visible::before {
+	opacity: .15;
 }
 
 /* =========================================================================
@@ -228,24 +292,6 @@ html {
 	cursor: zoom-in;
 	line-height: 0;
 }
-/* Miękka kolorowa poświata na hover (łagodniejsza wersja .glow-google) */
-.tl-shot::before {
-	content: "";
-	position: absolute;
-	inset: -6px;
-	z-index: -1;
-	border-radius: inherit;
-	background: conic-gradient(from 0deg,
-		var(--g-blue),
-		var(--g-green),
-		var(--g-yellow),
-		var(--g-red),
-		var(--g-blue));
-	filter: blur(13px) saturate(1.1);
-	opacity: 0;
-	transition: opacity .25s ease;
-	pointer-events: none;
-}
 .tl-shot img {
 	width: 100%;
 	height: auto;
@@ -255,11 +301,7 @@ html {
 	object-position: top;
 	border-radius: inherit;
 }
-/* Hover: miękka kolorowa poświata + delikatna lupa (bez przyciemniania). */
-.tl-shot:hover::before,
-.tl-shot:focus-visible::before {
-	opacity: .45;
-}
+/* Hover: delikatna lupa nad miniaturą (poświata pochodzi z .hover-glow). */
 .tl-shot-zoom {
 	position: absolute;
 	inset: 0;
@@ -385,18 +427,353 @@ html {
 	}
 }
 
+/* =========================================================================
+   Strona główna — komponenty sekcji (hero, stats, filary, manifest,
+   warsztat, highlighty, „Poza kodem", dzielenie wiedzą, kontakt).
+   ========================================================================= */
+
+/* Hero */
+.hero-eyebrow {
+	font-size: 2rem;
+	font-weight: 600;
+	letter-spacing: .01em;
+	color: var(--bs-emphasis-color);
+}
+.hero-headline {
+	font-size:4rem;
+	font-weight: 700;
+	letter-spacing: -.03em;
+	line-height: 1.05;
+}
+.hero-role {
+	font-size: 1.15rem;
+	font-weight: 600;
+	color: var(--bs-secondary-color);
+}
+.hero-photo {
+	display: inline-block;
+	max-width: 100%;
+}
+.hero-photo img {
+	border-radius: var(--bs-border-radius-xxl);
+	max-width: 100%;
+	height: auto;
+}
+
+/* Ikona „hanging icons" (etykiety + specjalizacje). Kolor glifu i tło sterowane
+   zmiennymi --ez-icon-color / --ez-icon-bg (bootstrap_custom.css) — łatwa podmiana stylu. */
+.icon-square {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: var(--ez-icon-size);
+	height: var(--ez-icon-size);
+	border-radius: var(--bs-border-radius);
+	font-size: calc(var(--ez-icon-size) * .46);
+	color: var(--ez-icon-color);
+	background: var(--ez-icon-bg);
+}
+
+/* Wspólny wygląd wszystkich boxów strony głównej: jedno tło + jeden cień.
+   Hover (poświata) dochodzi z reguł .card/.stat w sekcji .hover-glow. */
+.stat,
+.service-card,
+.proj-card,
+.balance-card {
+	background: var(--ez-box-bg);
+	box-shadow: var(--ez-box-shadow);
+}
+
+/* Pasek dowodów (stats) — klikalne etykiety prowadzące do portfolio */
+.stat {
+	display: block;
+	padding: 1.25rem;
+	border: 1px solid var(--bs-border-color);
+	border-radius: var(--bs-border-radius-lg);
+	color: inherit;
+}
+.stat-accent {
+	border-color: rgba(var(--bs-primary-rgb), .35);
+}
+.stat-num {
+	margin: 0;
+	margin-top: -.5rem;
+	font-size: 1.6rem;
+	font-weight: 700;
+	letter-spacing: -.02em;
+}
+.stat-num span {font-size: 133%}
+.stat-label {
+	margin: 0;
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.stat-sub {
+	margin: .15rem 0 0;
+	font-size: 1rem;
+	color: var(--bs-secondary-color);
+}
+
+/* Ikona w kartach (filary itp.) */
+.pillar-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.75rem;
+	height: 2.75rem;
+	border-radius: var(--bs-border-radius);
+	font-size: 1.4rem;
+	color: var(--ez-primary);
+	background: var(--bs-tertiary-bg);
+}
+
+/* Pasek technologii (hero) */
+.tech-row {
+	display: flex;
+	flex-wrap: wrap;
+	gap: .6rem;
+}
+.tech-pill {
+	display: inline-flex;
+	align-items: center;
+	gap: .45rem;
+	font-size: .95rem;
+	font-weight: 500;
+	padding: .3rem .8rem;
+	border-radius: 1.1rem;
+	background: var(--bs-body-bg);
+	border: 1px solid var(--bs-border-color);
+}
+.tech-pill .bi,
+.tech-pill .ez-icon {
+	font-size: 1.2rem;
+}
+
+/* „W czym mogę pomóc" — karty usług (układ hanging icons) */
+.service-more {
+	margin-top: auto;
+	font-weight: 600;
+	font-size: .9rem;
+	color: var(--ez-primary);
+	text-decoration: none;
+}
+
+/* Chipy technologii (projekty) */
+.chip {
+	font-size: .78rem;
+	line-height: 1;
+	padding: .4rem .65rem;
+	border-radius: 2rem;
+	color: var(--bs-secondary-color);
+	background: var(--bs-tertiary-bg);
+	border: 1px solid var(--bs-border-color);
+}
+
+/* Wybrane projekty — karty: góra (tekst | zrzut), tagi pełną szerokością u dołu */
+.proj-card-inner {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	height: 100%;
+	padding: 1.5rem;
+}
+.proj-head {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+}
+.proj-text {
+	flex: 1 1 0;
+	min-width: 0;
+}
+.proj-logo {
+	height: 32px;
+	width: auto;
+	max-width: 160px;
+	object-fit: contain;
+	object-position: left;
+	margin-bottom: 1rem;
+}
+.proj-sub {
+	margin: 0 0 .2rem 0;
+	font-size: .9rem;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	color: var(--ez-primary);
+}
+.proj-desc {
+	margin: 0;
+	font-size: .9rem;
+	color: var(--bs-secondary-color);
+}
+.proj-shot {
+	flex: 0 0 42%;
+	border: 1px solid var(--bs-border-color);
+	border-radius: var(--bs-border-radius);
+	overflow: hidden;
+	background: var(--bs-tertiary-bg);
+	line-height: 0;
+}
+.proj-shot img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 16 / 11;
+	object-fit: cover;
+	object-position: top;
+	display: block;
+}
+/* Tagi: równo u dołu karty niezależnie od długości opisu */
+.proj-tags {
+	margin-top: auto;
+}
+
+/* Równowaga i rozwój — karty BJJ */
+.poza-eyebrow {
+	margin-bottom: .5rem;
+	font-size: .72rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .1em;
+	color: var(--ez-primary);
+}
+.balance-split {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+.balance-media {
+	line-height: 0;
+}
+.balance-media img {
+	width: 100%;
+	height: 100%;
+	max-height: 16rem;
+	object-fit: cover;
+	display: block;
+}
+.balance-body {
+	padding: 1.5rem 1.75rem;
+}
+.balance-check {
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	margin: 1.1rem 0 0;
+}
+.balance-check li {
+	display: flex;
+	align-items: center;
+	gap: .6rem;
+	font-weight: 500;
+}
+.balance-check .bi {
+	color: var(--ez-primary);
+	font-size: 1.1rem;
+}
+.balance-foot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+	margin-top: 1.5rem;
+	padding-top: 1.25rem;
+	border-top: 1px solid var(--bs-border-color);
+}
+.balance-foot-info {
+	display: flex;
+	align-items: center;
+	gap: .9rem;
+}
+.medal-trophy {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3rem;
+	height: 3rem;
+	flex: 0 0 auto;
+	border-radius: 50%;
+	font-size: 1.4rem;
+	color: #E0A800;
+	background: var(--bs-tertiary-bg);
+}
+.medal-badge {
+	display: inline-block;
+	font-size: .72rem;
+	font-weight: 600;
+	padding: .2rem .55rem;
+	border-radius: 2rem;
+	color: var(--ez-primary);
+	background: var(--bs-tertiary-bg);
+	border: 1px solid rgba(var(--bs-primary-rgb), .3);
+}
+.balance-medal {
+	flex: 0 0 auto;
+}
+.balance-medal img {
+	width: 5.5rem;
+	height: 6.5rem;
+	object-fit: cover;
+	border-radius: var(--bs-border-radius);
+	display: block;
+}
+@media (min-width: 576px) {
+	.balance-split {
+		flex-direction: row;
+	}
+	.balance-media {
+		flex: 0 0 42%;
+	}
+	.balance-media img {
+		max-height: none;
+	}
+}
+
+/* Kontakt — pasek z gradientem marki */
+.contact-band {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.25rem 1.5rem;
+	padding: 2.25rem 2.5rem;
+	border-radius: var(--bs-border-radius-xl);
+	background: var(--ez-gradient);
+	color: #fff;
+}
+.contact-band-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 3.5rem;
+	height: 3.5rem;
+	flex: 0 0 auto;
+	border-radius: 50%;
+	font-size: 1.6rem;
+	color: #fff;
+	background: rgba(255, 255, 255, .2);
+}
+.contact-band-text {
+	flex: 1 1 16rem;
+}
+.contact-band-text .h3 {
+	color: #fff;
+}
+.contact-band-text p {
+	color: rgba(255, 255, 255, .9);
+}
+.contact-band-btn {
+	font-weight: 600;
+}
+
 /* --- Media na stronie "O mnie" ----------------------------------------- */
 .about-activity-image {
 	aspect-ratio: 16 / 9;
 	object-fit: cover;
 }
+/* Miniatury filmów: poświata na hover przez .hover-glow (jak w portfolio);
+   border-radius zgodny z .rounded obrazka, by poświata miała te same rogi. */
 .video-cover-link {
-	transition: transform .15s ease, filter .15s ease;
-}
-.video-cover-link:hover,
-.video-cover-link:focus-visible {
-	filter: saturate(1.08);
-	transform: translateY(-2px);
+	border-radius: var(--bs-border-radius);
 }
 .video-cover {
 	aspect-ratio: 16 / 9;

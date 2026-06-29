@@ -2,7 +2,7 @@
 <div class="row g-3">
 	<?php foreach ($videos as $v): ?>
 	<div class="col-6 col-md-4 col-lg-2">
-		<a class="d-block video-cover-link" href="<?= h($v['url']) ?>" target="_blank" rel="noopener" title="<?= h($v['title']) ?>">
+		<a class="d-block video-cover-link hover-glow" href="<?= h($v['url']) ?>" target="_blank" rel="noopener" title="<?= h($v['title']) ?>">
 			<picture>
 				<source srcset="<?= h($v['image']) ?>.webp" type="image/webp">
 				<img class="img-fluid rounded shadow-sm border video-cover" src="<?= h($v['image']) ?>.jpg" alt="<?= h($v['title']) ?>" loading="lazy">

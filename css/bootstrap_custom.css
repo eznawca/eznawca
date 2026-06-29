@@ -30,6 +30,17 @@
 
 	/* Subtelniejszy kolor tekstu */
 	--bs-body-color: #1f2430;
+
+	/* Wspólne tło i cień boxów (karty strony głównej) */
+	--ez-box-bg: var(--bs-gray-100);
+	--ez-box-shadow: 0 .25rem 1rem rgba(0, 0, 0, .05);
+
+	/* Ikony .icon-square (sekcje „etykiety" i „specjalizacje") — łatwa podmiana stylu:
+	   --ez-icon-color = kolor glifu, --ez-icon-bg = tło (gradient/kolor), --ez-icon-size = rozmiar kwadratu.
+	   Wielkość glifu skaluje się proporcjonalnie do --ez-icon-size (calc w .icon-square). */
+	--ez-icon-color: #fff;
+	--ez-icon-bg: var(--ez-gradient);
+	--ez-icon-size: 3rem;
 }
 
 /* Tryb ciemny — dostroj akcenty */
@@ -39,6 +50,8 @@
 	--bs-link-color: #5BC8F0;
 	--bs-link-color-rgb: 91, 200, 240;
 	--bs-link-hover-color: #8AD8F5;
+
+	--ez-box-bg: var(--bs-tertiary-bg);
 }
 
 /* Przyciski primary: gradient marki (cienie standardowe BS) */

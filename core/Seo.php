@@ -97,7 +97,7 @@ class Seo
 		$blocks = [];
 
 		// Person — tożsamość marki osobistej (kluczowe dla AEO)
-		$blocks[] = [
+		$person = [
 			'@context'      => 'https://schema.org',
 			'@type'         => 'Person',
 			'@id'           => SITE['url'] . '/#person',
@@ -109,6 +109,13 @@ class Seo
 			'email'         => 'mailto:' . SITE['email'],
 			'sameAs'        => array_values(SITE['social']),
 		];
+		if (!empty(SITE['knowsAbout'])) {
+			$person['knowsAbout'] = array_values((array)SITE['knowsAbout']);
+		}
+		if (!empty(SITE['award'])) {
+			$person['award'] = SITE['award'];
+		}
+		$blocks[] = $person;
 
 		// BreadcrumbList
 		if (!empty($meta['breadcrumb'])) {

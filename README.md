@@ -43,7 +43,28 @@ Nie wyrównujemy zmiennych, operatorów, przypisań, operatorów tablicowych, op
 Używamy pojedynczych spacji wokół operatorów, zgodnie z czytelnością i standardami PSR.
 Nie tworzymy wizualnych kolumn spacjami.
 
+## Strony programistów
+- https://mrugalski.pl/
+- https://uw-team.org/
+- https://www.webdevinsider.pl/
+- https://przeprogramowani.pl/
+- https://www.10xdevs.pl/
+- https://helloroman.pl/faq - Elementy do FAQ
+- https://strefakodera.pl/
+- https://zaprogramujzycie.pl/spis-tresci/ - Sprawdź rózne elementy
+- https://devszczepaniak.pl/
+- https://blog.szurek.tv/ - filmy moga byc pomysłami na teksty
+- https://www.javadevmatt.pl/
+- https://koddlo.pl/
+- https://tworcastron.pl/
+- https://rombarte.pl/
+- https://blog.dgdev.pl/
+
 ## Ciekawe strony WWW jako inspiracje
+- https://www.randstad.pl/
+   - https://www.randstad.pl/strefa-pracownika/zawody/php-developer/ - Lista: Jak zostać programistą PHP?
+   - https://www.randstad.pl/strefa-pracownika/zawody/backend-developer/ - kto to jest back-end developer?
+   - https://www.randstad.pl/strefa-pracownika/zawody/web-developer/ - kto to jest web developer?
 - https://kacperkreft.pl/ - ładna i ciekawa nawigacja
 - https://devstyle.pl/ - obfitość treści
 - https://marciniwuc.com/

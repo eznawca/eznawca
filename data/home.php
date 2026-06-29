@@ -10,15 +10,12 @@ return [
 		'menu' => true,
 	],
 	'seo' => [
-		'title' => 'Andrzej Mazur EZNAWCA — Full Stack PHP Developer',
-		'description' => 'Andrzej Mazur EZNAWCA — programista PHP i Web Developer. Tworzę rozwiązania back-end dla e-commerce.',
+		'title' => 'Andrzej Mazur — Senior PHP Developer · e-commerce, legacy i AI',
+		'description' => 'Senior PHP Developer z 30-letnim stażem. Modernizacja legacy PHP, migracje i optymalizacja e-commerce na Shopware — dziś też z AI. Mistrz Polski No-Gi BJJ 2026.',
 		'canonical' => '/',
 	],
 	'sitemap' => [
 		'changefreq' => 'monthly',
 		'priority' => '1.0',
-	],
-	'content' => [
-		'lead' => 'Full Stack PHP Developer dla branży e-commerce.',
 	],
 ];

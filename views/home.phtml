@@ -1,50 +1,199 @@
 <?php
-/** @var string $lead */
+/**
+ * Strona główna — wizytówka Andrzeja Mazura EZNAWCA.
+ * Układ wg projektu graficznego: hero, pasek dowodów, stack, „W czym mogę
+ * pomóc", wybrane projekty, „Równowaga i rozwój" (BJJ), pasek kontaktu.
+ * Treść pisana wprost w szablonie; kolekcje jako lokalne tablice.
+ */
+
+$stats = [
+	['icon' => 'bi-calendar3', 'num' => '<span>30</span> lat', 'label' => 'w IT', 'sub' => 'Od Turbo Pascala do AI'],
+	['icon' => 'bi-cart3', 'num' => '<span>24</span> lata', 'label' => 'w e-commerce', 'sub' => 'Sklepy, platformy, integracje'],
+	['icon' => 'bi-globe-europe-africa', 'num' => '<span>5</span> rynków', 'label' => 'DE · FR · NL · IT · PL', 'sub' => 'Międzynarodowe doświadczenie'],
+	['icon' => 'bi-trophy', 'num' => 'Złoto BJJ', 'label' => 'Mistrz Polski No-Gi 2026', 'sub' => 'Dyscyplina. Strategia. Wyniki.'],
+];
+
+$tech = [
+	['label' => '', 'svg' => 'php', 'class' => 'color-php'],
+	['label' => 'Git', 'icon' => 'bi-git', 'color' => '#f05133'],
+	['label' => 'JavaScript', 'svg' => 'javascript'],
+	['label' => 'SQL', 'icon' => 'bi-database', 'color' => '#00758f'],
+	['label' => 'Bootstrap', 'icon' => 'bi-bootstrap-fill', 'color' => '#7952b3'],
+	['label' => 'Shopware', 'svg' => 'shopware', 'class' => 'color-shopware'],
+	['label' => 'Linux', 'svg' => 'linux'],
+	['label' => 'JSON', 'icon' => 'bi-braces', 'color' => '#1577d8'],
+	['label' => 'API', 'icon' => 'bi-hdd-network', 'color' => '#648503'],
+    ['label' => 'Smarty', 'icon' => 'bi-lightbulb-fill', 'color' => '#eaaf00'],
+];
+
+$services = [
+	['icon' => 'bi-graph-up-arrow', 'title' => 'Zrozumienie biznesu', 'text' => 'Raporty, analityka i automatyzacje, które zamieniają dane w realne wyniki finansowe. Decyzje oparte na liczbach, nie na przeczuciu.'],
+	['icon' => 'bi-puzzle', 'title' => 'Modernizacje, integracje i legacy', 'text' => 'Bezpieczne migracje i rozwój aplikacji PHP (w tym legacy: Shopware, Zend, Smarty) — oraz integracje sklepu z ERP, CRM, płatnościami i logistyką w jeden spójny ekosystem.'],
+	['icon' => 'bi-cart3', 'title' => 'Optymalizacje <nobr>e-commerce</nobr>', 'text' => 'Wydajność backendu, Web Performance, SEO i UX. Mierzalna poprawa płatności, logistyki i konwersji, przed i po.'],
+	['icon' => 'bi-stars', 'title' => 'AI w tworzeniu kodu', 'text' => 'Claude Code i Codex w produkcji, nie na slajdach. Guardraile, testy, własne reguły. AI jako dźwignia, nie autopilot.'],
+];
+
+$projects = [
+	['logo' => 'rolladengroup.png', 'name' => 'Rolladen Group', 'sub' => 'E-commerce na Shopware', 'text' => 'Rozwój i utrzymanie platformy B2B na Shopware dla rynku niemieckiego.', 'tech' => ['Shopware', 'PHP', 'MySQL', 'Smarty'], 'shot' => 'rolladengroup', 'slug' => 'rolladen'],
+	['logo' => 'proline.png', 'name' => 'ProLine', 'sub' => 'CMS · ERP · E-commerce', 'text' => 'Tworzenie i rozwój sklepu ProLine.pl oraz autorskich systemów: integracja z ERP, płatności, magazyn, CMS i API.', 'tech' => ['PHP', 'MySQL', 'CMS', 'ERP'], 'shot' => 'proline', 'slug' => 'proline'],
+	['logo' => 'eltron.png', 'name' => 'ELTRON', 'sub' => 'E-commerce · Web', 'text' => 'Rozwój sklepu Eltron.pl i aplikacji wspierających sprzedaż, marketing SEO/SEM.', 'tech' => ['PHP', 'MySQL', 'CMS', 'Płatności'], 'shot' => 'eltron', 'slug' => 'eltron'],
+];
 ?>
-<section class="row align-items-center g-4 py-3">
-	<div class="col-lg-4 text-center">
-		<div class="glow-google d-inline-block rounded">
-			<picture>
-				<source srcset="/img/andrzej-mazur-eznawca.webp" type="image/webp">
-				<img class="img-fluid rounded border" src="/img/andrzej-mazur-eznawca.jpg" alt="Andrzej Mazur EZNAWCA" width="320" height="320">
-			</picture>
+
+<section class="row align-items-center g-4 g-lg-5 py-3 py-lg-4">
+	<div class="col-lg-7">
+		<p class="hero-eyebrow mb-2">Andrzej Mazur <span class="text-gradient">EZNAWCA</span></p>
+		<h1 class="hero-headline fw-bold mb-3">Niebieski pas <span class="text-gradient">BJJ</span>,<br>czarny pas <span class="color-php">PHP</span>.</h1>
+		<p class="hero-role mb-3">Senior PHP Developer &amp; E-Commerce Consultant</p>
+		<p class="lead mb-4">Od ponad 20 lat buduję systemy e-commerce, które wspierają rozwój firm i dowożą mierzalne rezultaty — od rozpoznania rynku, przez nowoczesny, czysty kod, po skalowalny produkt. Jestem pasjonatem nowych mediów i wszystkiego, co pozwala budować przewagę konkurencyjną za pomocą technologii i języka PHP.</p>
+		<div class="d-flex flex-wrap gap-2">
+			<a class="btn btn-primary btn-lg" href="/portfolio">Zobacz moje projekty <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+			<a class="btn btn-outline-primary btn-lg" href="/kontakt"><i class="bi bi-calendar-check" aria-hidden="true"></i> Umów rozmowę</a>
 		</div>
 	</div>
-	<div class="col-lg-8">
-		<h1 class="display-5 fw-bold mb-2">Andrzej Mazur <span class="text-gradient">EZNAWCA</span></h1>
-		<p class="lead"><?= $lead ?></p>
-		<p class="text-secondary">Tworzę rozwiązania back-end w PHP dla branży e-commerce — od logiki aplikacji po optymalizację procesów e-marketingu i e-sprzedaży.</p>
-		<div class="d-flex flex-wrap gap-2 mt-3">
-			<a class="btn btn-primary" href="/portfolio">Zobacz portfolio</a>
-			<a class="btn btn-outline-secondary" href="/o-mnie">O mnie</a>
-			<a class="btn btn-outline-secondary" href="/kontakt">Kontakt</a>
+	<div class="col-lg-5 text-center">
+		<div class="hero-photo">
+			<img class="img-fluid shadow" src="/img/andrzej-mazur-eznawca.webp" alt="Andrzej Mazur EZNAWCA — Senior PHP Developer" width="420" height="420">
 		</div>
 	</div>
 </section>
 
-<section class="row g-4 mt-4">
-	<div class="col-md-4">
-		<div class="card h-100 shadow-sm">
-			<div class="card-body">
-				<h2 class="h5">Back-end PHP</h2>
-				<p class="card-text text-secondary">Solidne rozwiązania serwerowe w PHP i technologiach pokrewnych.</p>
+<section class="mt-4 mt-lg-5">
+	<div class="row g-3">
+		<?php foreach ($stats as $s): ?>
+		<div class="col-12 col-sm-6 col-lg-3">
+			<a class="stat h-100 d-flex align-items-start text-reset text-decoration-none" href="/portfolio">
+				<span class="icon-square stat-icon flex-shrink-0 me-3"><i class="bi <?= h($s['icon']) ?>" aria-hidden="true"></i></span>
+				<div>
+					<p class="stat-num"><?= $s['num'] ?></p>
+					<p class="stat-label"><?= $s['label'] ?></p>
+					<p class="stat-sub"><?= $s['sub'] ?></p>
+				</div>
+			</a>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</section>
+
+<section class="mt-4 mt-lg-5">
+	<ul class="tech-row list-unstyled m-0">
+		<?php foreach ($tech as $t): ?>
+		<li class="tech-pill"><?php if (!empty($t['svg'])): ?><?= icon($t['svg'], $t['class'] ?? '') ?><?php else: ?><i class="bi <?= h($t['icon']) ?>" style="color: <?= h($t['color']) ?>" aria-hidden="true"></i><?php endif; ?> <?= $t['label'] ?></li>
+		<?php endforeach; ?>
+	</ul>
+</section>
+
+<section class="mt-5 pt-lg-3">
+	<h2 class="h3 mb-4">W czym się <span class="text-gradient">specjalizuję</span></h2>
+	<div class="row g-4">
+		<?php foreach ($services as $s): ?>
+		<div class="col-sm-6 col-lg-3">
+			<div class="card service-card h-100">
+				<div class="card-body d-flex">
+					<span class="icon-square service-icon flex-shrink-0 me-3"><i class="bi <?= h($s['icon']) ?>" aria-hidden="true"></i></span>
+					<div class="d-flex flex-column">
+						<h3 class="h5"><?= $s['title'] ?></h3>
+						<p class="card-text text-secondary mb-0"><?= $s['text'] ?></p>
+					</div>
+				</div>
 			</div>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</section>
+
+<section class="mt-5 pt-lg-3">
+	<div class="d-flex flex-wrap align-items-baseline justify-content-between gap-2 mb-4">
+		<h2 class="h3 mb-0">Wybrane <span class="text-gradient">projekty</span></h2>
+		<a class="link-primary text-decoration-none fw-semibold" href="/portfolio">Zobacz wszystkie projekty <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+	</div>
+	<div class="row g-4">
+		<?php foreach ($projects as $p): ?>
+		<div class="col-lg-4">
+			<a class="proj-card card h-100 text-reset text-decoration-none" href="/portfolio#proj-<?= h($p['slug']) ?>">
+				<div class="proj-card-inner">
+					<div class="proj-head">
+						<div class="proj-text">
+							<img class="proj-logo" src="/img/logos/<?= h($p['logo']) ?>" alt="<?= h($p['name']) ?>" loading="lazy" decoding="async">
+							<p class="proj-sub"><?= $p['sub'] ?></p>
+							<p class="proj-desc"><?= $p['text'] ?></p>
+						</div>
+						<div class="proj-shot">
+							<img src="/img/website/thumb/<?= h($p['shot']) ?>.webp" alt="<?= h($p['name']) ?> — zrzut ekranu" loading="lazy" decoding="async">
+						</div>
+					</div>
+					<ul class="proj-tags list-unstyled d-flex flex-wrap gap-2 m-0">
+						<?php foreach ($p['tech'] as $t): ?>
+						<li class="chip"><?= $t ?></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</a>
+		</div>
+		<?php endforeach; ?>
+	</div>
+</section>
+
+<section class="mt-5 pt-lg-3">
+    <h2 class="h3 mb-4">Równowaga i <span class="text-gradient">rozwój</span> &nbsp; · &nbsp; Moje <span class="text-gradient">pasje</span></h2>
+	<div class="row g-4">
+		<div class="col-lg-6">
+			<article class="balance-card card h-100 overflow-hidden">
+				<div class="balance-split">
+					<figure class="balance-media m-0">
+						<picture>
+							<source srcset="/img/bjj/mata.webp" type="image/webp">
+							<img src="/img/bjj/mata.jpg" alt="Andrzej Mazur podczas treningu No-Gi Jiu-Jitsu na macie" loading="lazy" decoding="async">
+						</picture>
+					</figure>
+					<div class="balance-body">
+						<p class="poza-eyebrow">Poza kodem</p>
+						<h3 class="h4 mb-2">Dyscyplina i technika</h3>
+						<p class="text-secondary mb-0">Na macie liczą się spokój, cierpliwość i konsekwencja. Te same zasady stosuję w kodzie: małe, bezpieczne kroki, testy, pomiary i dostarczanie wartości.</p>
+						<ul class="balance-check list-unstyled">
+							<li><i class="bi bi-check2-circle" aria-hidden="true"></i> Konsekwencja w działaniu</li>
+							<li><i class="bi bi-check2-circle" aria-hidden="true"></i> Cierpliwość w procesie</li>
+							<li><i class="bi bi-check2-circle" aria-hidden="true"></i> Technika ponad siłą</li>
+						</ul>
+					</div>
+				</div>
+			</article>
+		</div>
+		<div class="col-lg-6">
+			<article class="balance-card card h-100">
+				<div class="balance-body d-flex flex-column h-100">
+					<p class="poza-eyebrow">Poza kodem</p>
+					<h3 class="h4 mb-2">Mentalność zwycięzcy</h3>
+					<p class="text-secondary mb-0">Sport uczy pokory, ciężkiej pracy i konsekwencji. To paliwo, które napędza także projekty. W wieku 50 lat pierwszy raz wszedłem na matę — i wróciłem ze złotem Mistrzostw Polski.</p>
+					<div class="balance-foot mt-auto">
+						<div class="balance-foot-info">
+							<span class="medal-trophy"><i class="bi bi-trophy-fill" aria-hidden="true"></i></span>
+							<div>
+								<p class="fw-semibold mb-0">Złoty medal</p>
+								<p class="text-secondary small mb-2">No-Gi BJJ 2026</p>
+								<span class="medal-badge">Master 4</span>
+							</div>
+						</div>
+						<figure class="balance-medal m-0">
+							<picture>
+								<source srcset="/img/bjj/medal.webp" type="image/webp">
+								<img src="/img/bjj/medal.jpg" alt="Andrzej Mazur ze złotym medalem Mistrzostw Polski No-Gi 2026" loading="lazy" decoding="async">
+							</picture>
+						</figure>
+					</div>
+				</div>
+			</article>
 		</div>
 	</div>
-	<div class="col-md-4">
-		<div class="card h-100 shadow-sm">
-			<div class="card-body">
-				<h2 class="h5">E-commerce</h2>
-				<p class="card-text text-secondary">Optymalizacja procesów e-marketingu i e-sprzedaży, budowanie przewagi konkurencyjnej.</p>
-			</div>
+</section>
+
+<section class="mt-5 pt-lg-3">
+	<div class="contact-band">
+		<span class="contact-band-icon"><i class="bi bi-envelope-paper" aria-hidden="true"></i></span>
+		<div class="contact-band-text">
+			<h2 class="h3 mb-1">Porozmawiajmy o Twoim projekcie</h2>
+			<p class="mb-0">Porozmawiajmy o tym, jak mogę pomóc Twojemu biznesowi rosnąć.</p>
 		</div>
-	</div>
-	<div class="col-md-4">
-		<div class="card h-100 shadow-sm">
-			<div class="card-body">
-				<h2 class="h5">Edukacja</h2>
-				<p class="card-text text-secondary">Autor kursu <a href="https://lekcjephp.pl" target="_blank" rel="noopener">LekcjePHP.pl</a> i programu <a href="/mat/">Matematyk</a>.</p>
-			</div>
-		</div>
+		<a class="btn btn-light btn-lg contact-band-btn" href="/kontakt">Skontaktuj się ze mną <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
 	</div>
 </section>
