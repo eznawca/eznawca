@@ -54,6 +54,7 @@ Nie tworzymy wizualnych kolumn spacjami.
 - https://zaprogramujzycie.pl/spis-tresci/ - Sprawdź rózne elementy
 - https://devszczepaniak.pl/
 - https://blog.szurek.tv/ - filmy moga byc pomysłami na teksty
+- https://stormit.pl/
 - https://www.javadevmatt.pl/
 - https://koddlo.pl/
 - https://tworcastron.pl/
@@ -61,6 +62,8 @@ Nie tworzymy wizualnych kolumn spacjami.
 - https://blog.dgdev.pl/
 
 ## Ciekawe strony WWW jako inspiracje
+- https://aiwideo.pl/
+- https://geekwork.pl/
 - https://www.randstad.pl/
    - https://www.randstad.pl/strefa-pracownika/zawody/php-developer/ - Lista: Jak zostać programistą PHP?
    - https://www.randstad.pl/strefa-pracownika/zawody/backend-developer/ - kto to jest back-end developer?
