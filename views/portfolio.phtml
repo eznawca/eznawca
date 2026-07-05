@@ -41,11 +41,11 @@
 					<?php if (!empty($p['shot'])): ?>
 					<button type="button" class="tl-shot hover-glow"
 						data-shot-src="/img/website/full/<?= h($p['shot']) ?>.webp"
-						data-shot-alt="<?= h($p['company'] . ' — ' . $p['role']) ?>"
+						data-shot-alt="<?= h($p['company'] . ' - ' . $p['role']) ?>"
 						data-shot-caption="<?= h($p['company'] . ' · ' . $p['years']) ?>"
 						aria-label="Powiększ: <?= h($p['company']) ?>">
 						<img src="/img/website/thumb/<?= h($p['shot']) ?>.webp"
-							alt="<?= h($p['company']) ?> — miniatura"
+							alt="<?= h($p['company']) ?> - miniatura"
 							width="480" height="384"
 							loading="lazy" decoding="async">
 						<span class="tl-shot-zoom" aria-hidden="true"><i class="bi bi-zoom-in"></i></span>

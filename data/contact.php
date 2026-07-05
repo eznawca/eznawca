@@ -11,7 +11,7 @@ return [
 	],
 	'seo' => [
 		'title' => 'Kontakt — Andrzej Mazur EZNAWCA',
-		'description' => 'Skontaktuj się z Andrzejem Mazurem (EZNAWCA) — e-mail i profile zawodowe.',
+		'description' => 'Skontaktuj się z Andrzejem Mazurem (EZNAWCA) — formularz kontaktowy, e-mail i konsultacje projektów PHP oraz e-commerce.',
 		'canonical' => '/kontakt',
 	],
 	'sitemap' => [

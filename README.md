@@ -50,7 +50,7 @@ Nie tworzymy wizualnych kolumn spacjami.
 - https://przeprogramowani.pl/
 - https://www.10xdevs.pl/
 - https://helloroman.pl/faq - Elementy do FAQ
-- https://strefakodera.pl/
+- https://strefakodera.pl/ - dużo kontentu
 - https://zaprogramujzycie.pl/spis-tresci/ - Sprawdź rózne elementy
 - https://devszczepaniak.pl/
 - https://blog.szurek.tv/ - filmy moga byc pomysłami na teksty

@@ -6,6 +6,7 @@
    ========================================================================= */
 
 :root {
+	--bs-tertiary-bg: #e9eef3;
 	/* Tokeny marki (--ez-primary i --ez-gradient używane też w index.css) */
 	--ez-aqua: #19D3E3;
 	--ez-raspberry: #2F5BFF;
@@ -38,9 +39,13 @@
 	/* Ikony .icon-square (sekcje „etykiety" i „specjalizacje") — łatwa podmiana stylu:
 	   --ez-icon-color = kolor glifu, --ez-icon-bg = tło (gradient/kolor), --ez-icon-size = rozmiar kwadratu.
 	   Wielkość glifu skaluje się proporcjonalnie do --ez-icon-size (calc w .icon-square). */
-	--ez-icon-color: #fff;
-	--ez-icon-bg: var(--ez-gradient);
-	--ez-icon-size: 3rem;
+	--ez-icon-size: 3.55rem;
+	--ez-icon-color: #1a6af1; /* #fff */
+	--ez-icon-bg: linear-gradient(120deg, #ebf1ff, #d2ddfa); /* #ebf1ff / var(--ez-gradient) */
+	--ez-icon-font-ratio: .55; /* .46 */
+
+	/* Głębokość wygaszania dołu portretu hero (mask w .hero-photo img) */
+	--ez-photo-fade: 60px;
 }
 
 /* Tryb ciemny — dostroj akcenty */

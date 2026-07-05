@@ -44,7 +44,7 @@ return [
 				'url' => 'https://www.eltron.pl',
 				'tech' => ['PHP', 'MySQL', 'MS-SQL', 'CMS', 'SEO', 'SEM', 'e-mail marketing', 'social media', 'web analytics'],
 				'desc' => 'Rozwój sklepu internetowego Eltron.pl, optymalizacja aplikacji e-commerce, działania SEO/SEM, e-mail marketing, webpositioning oraz wsparcie wizerunku marki w kanałach internetowych.',
-				'logo' => 'eltron.png',
+				'logo' => 'eltron2.png',
 				'shot' => 'eltron',
 			],
 			'merlinx' => [

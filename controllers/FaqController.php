@@ -16,7 +16,7 @@ class FaqController extends Controller
 				'name'           => $item['q'],
 				'acceptedAnswer' => [
 					'@type' => 'Answer',
-					'text'  => $item['a'],
+					'text'  => $this->jsonLdAnswer((string)$item['a']),
 				],
 			];
 		}
@@ -32,5 +32,13 @@ class FaqController extends Controller
 		$this->view('faq', [
 			'faq' => $faq,
 		], $meta);
+	}
+
+	private function jsonLdAnswer(string $answer): string
+	{
+		$text = html_entity_decode(strip_tags($answer), ENT_QUOTES, 'UTF-8');
+		$text = preg_replace('/\s+/u', ' ', $text);
+
+		return trim((string)$text);
 	}
 }
