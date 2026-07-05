@@ -42,7 +42,7 @@ między tagami wypisuj zaufaną treść wprost `<?= $var ?>`, liczby rzutuj `(in
 ## Preferencje kodowania
 - Stosuj kodowanie UTF-8
 - Używaj tabulatorów do wcięć.
-- Nie wyrównuj kody za pomocą spacji przed znakami równości "=", czy też znaku zapytania "?", czy dwukropka ":".
+- Nie wyrównuj kody za pomocą spacji przed znakami równości "=", czy też znaku zapytania "?", czy dwukropka ":" czy przecinka ",".
 - Dostępna jest biblioteka polyfilli `core/upgrade_to_php8.lib.php` rozszerza środowisko o funkcje dostępne 
   w nowszych wersjach PHP:
   array_is_list, array_key_first, array_key_last, fdiv, get_debug_type, get_mangled_object_vars, hrtime, intdiv,
